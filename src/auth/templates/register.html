@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .przerwa {
+            padding: 5px;
+        }
+        p{
+            margin: 2px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+
+    {{form.email.label}}
+    {{ form.email() }}
+
+    {%for i in form.email.errors %}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+
+    {{form.username.label}}
+    {{ form.username() }}
+    {%for i in form.username.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+
+    {{form.password.label}}
+    {{ form.password() }}
+    {%for i in form.password.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+    {{form.confirm.label}}
+    {{ form.confirm() }}
+    {%for i in form.confirm.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+
+    <div class="przerwa"></div>
+    
+    {{form.role.label}}
+    {{ form.role() }}
+    {%for i in form.role.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <input type="submit" value="wyślij">
+</form>
+</body>
+</html>

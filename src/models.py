@@ -1,6 +1,7 @@
 from . import db, bcrypt
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(UserMixin, db.Model):
 
     __tablename__ = "user"
 
@@ -8,17 +9,20 @@ class User(db.Model):
     email = db.Column(db.String, unique=True, nullable=False)
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    role = db.Column(db.String, unique=True, nullable=False)
+    role = db.Column(db.String, nullable=False)
     notes = db.relationship('Notes', backref='user', lazy=True)
     
     def __init__(self, email, username, password, role):
         self.email = email
         self.username = username
-        self.password = bcrypt.generate_password_hash(password)
+        self.password = bcrypt.generate_password_hash(password, 12)
         self.role = role
         
     def __repr__(self):
         return f'<User {self.username}>'
+    
+    def get_id(self):
+        return str(self.id)
     
 class Notes(db.Model):
 
