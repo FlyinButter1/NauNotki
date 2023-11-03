@@ -32,7 +32,6 @@ def my_notes():
         return main()
     current_args = request.args.copy()
     component = ""
-    sql_query = ""
     for i in current_args:
         if i == 'class':
             component += f" AND grade = \'{current_args['class']}\'"
@@ -42,6 +41,9 @@ def my_notes():
             break
         if i == 'school':
             component += f" AND school_type = \'{current_args['school']}\'"
+            break
+        if i == 'user_text' and current_args['user_text'] != "":
+            component += f" AND content LIKE \'%{current_args['user_text']}%\'"
             break
     sql_query = text(
         f"SELECT * FROM note WHERE owner_id = {current_user.id}{component}")
