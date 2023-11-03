@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .przerwa {
+            padding: 5px;
+        }
+        p{
+            margin: 2px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>{{username}}</h1>
+<form action="" method="post">
+    {{form.oldpassword.label}}
+    {{ form.oldpassword() }}
+    {%for i in form.oldpassword.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+    
+    {{form.newpassword.label}}
+    {{ form.newpassword() }}
+    {%for i in form.newpassword.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+    {{form.confirm.label}}
+    {{ form.confirm() }}
+    {%for i in form.confirm.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+    <input type="submit" value="wyślij">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+</form>
+</body>
+</html>
