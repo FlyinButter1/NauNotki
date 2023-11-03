@@ -23,7 +23,7 @@ class Register(FlaskForm):
         )
     
     confirm = PasswordField(
-        "Confirm Passowrd",
+        "Confirm Password",
         validators=[EqualTo("password"), DataRequired()] 
     )
 
