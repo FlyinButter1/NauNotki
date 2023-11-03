@@ -1,9 +1,10 @@
-from flask import render_template, request, url_for, redirect, flash
+from flask import render_template, url_for, redirect, flash
 from flask import Blueprint
 from src.models import User
 from src import db, bcrypt, login_manager
 from .forms import Register, Login
 from flask_login import login_user, login_required, logout_user
+from src.main import main
 
 auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
 
@@ -21,8 +22,7 @@ def register():
         user = User(form.email.data, form.username.data, form.password.data, form.role.data)
         db.session.add(user)
         db.session.commit()
-        return render_template("success")
-
+        return main()
 
     return render_template("register.html", form=form)
 
@@ -35,7 +35,7 @@ def login():
         if user is not None:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
-                return "zalogowano"
+                return main()
         
         
         flash("Nieporawny login i/lub hasło")

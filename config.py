@@ -1,6 +1,6 @@
 from decouple import config
 
-DATABASE_URI = config("DATABASE_URL")
+DATABASE_URI = "" # temporary fix
 
 class Config(object):
     DEBUG = False
