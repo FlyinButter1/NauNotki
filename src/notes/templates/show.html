@@ -10,11 +10,11 @@
     </p>
     {% if filtered %}
     <p>
-        Wyniki filtrowane. <a href="/notes/my_notes">Wróć do wyników niefiltrowanych.</a>
+        Wyniki filtrowane. <a href="/notes/{{ curlink }}">Wróć do wyników niefiltrowanych.</a>
     </p>
     {% endif %}
     <ul>
-        <form action="/notes/my_notes" method="GET">
+        <form action="/notes/{{ curlink }}" method="GET">
             <label for="text_input">Wyszukaj:</label>
             <input type="text" id="text_input" name="user_text" placeholder="Type your text here">
             <input type="submit" value="Submit">
@@ -24,10 +24,11 @@
         {% endif %}
         {% for i in content %}
             <li> <!-- delete button nonfunctional -->
-                <h3>{{ i[5] }}{% if own %} <a href="/notes/my_notes?delete={{ i[0] }}">[DELETE]</a>{% endif %}</h3>
-                <p>Klasa <a href="/notes/my_notes?class={{ i[3] }}">{{ i[3] }}</a>,
-                    Szkoła <a href="/notes/my_notes?school={{ i[4] }}">{{ i[4] }}</a>,
-                    Przedmiot <a href="/notes/my_notes?subject={{ i[2] }}">{{ i[2] }}</a>
+                <h3>{{ i[5] }}{% if own %} <a href="/notes/{{ curlink }}?delete={{ i[0] }}">[DELETE]</a>{% endif %}</h3>
+                <p>Klasa <a href="/notes/{{ curlink }}?class={{ i[3] }}">{{ i[3] }}</a>,
+                    Szkoła <a href="/notes/{{ curlink }}?school={{ i[4] }}">{{ i[4] }}</a>,
+                    Przedmiot <a href="/notes/{{ curlink }}?subject={{ i[2] }}">{{ i[2] }}</a>
+                    {% if i[8] is defined %}, Autor <a href="/notes/{{ curlink }}?teacher={{ i[8] }}">{{ i[8] }}</a>{% endif %}
                 <p>{{ i[6] }}</p>
             </li>
         {% endfor %}
