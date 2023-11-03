@@ -7,7 +7,7 @@
 <style> /* temporary solution to keep it not looking like absolute shit */
     .login-bar {
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 2fr 1fr 2fr;
     }
 </style>
 <body>
@@ -27,6 +27,7 @@
                 <a href="/register">Register</a>
                 <a href="/login">Login</a>
             {% else %}
+                <a href="/notes/browse_notes">Browse others' notes</a>
                 <a href="/notes/my_notes">My notes</a>
                 <a href="/notes/add">Add new notes</a>
                 <a href="/logout">Logout</a>

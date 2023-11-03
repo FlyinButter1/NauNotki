@@ -44,12 +44,20 @@
 
     <div class="przerwa"></div>
 
+    {{form.privacy.label}}
+    {{ form.privacy() }}
+    {%for i in form.privacy.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+
+    <div class="przerwa"></div>
+
     {{form.chapter.label}}
     {{ form.chapter() }}
     {%for i in form.chapter.errors%}
     <p>{{i}}</p>
     {%endfor%}
-
 
     <div class="przerwa"></div>
 

@@ -35,16 +35,18 @@ class Notes(db.Model):
     school_type = db.Column(db.String)
     chapter = db.Column(db.Integer)
     content = db.Column(db.String, nullable = False)
+    private = db.Column(db.Integer)
     flashcards = db.relationship('Tests', backref='note', lazy=True)
     tests = db.relationship('Flashcards', backref='note', lazy=True)
 
-    def __init__(self, owner_id, content, subject = '', grade = '', school_type = '', chapter= ''):
+    def __init__(self, owner_id, content, subject = '', grade = '', school_type = '', chapter= '', private = '0'):
         self.owner_id = owner_id
         self.subject = subject.lower()
         self.grade = grade
         self.school_type = school_type
         self.chapter = chapter
         self.content = content
+        self.private = int(private)
 
     def __repr__(self):
         return f'<User {self.username}>'
