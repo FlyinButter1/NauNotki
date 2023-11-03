@@ -48,6 +48,5 @@ def my_notes():
     sql_query = text(
         f"SELECT * FROM note WHERE owner_id = {current_user.id}{component}")
     output = db.get_engine().connect().execute(sql_query).fetchall()
-    # print(output)  # debug
     return render_template("show.html", own=True, content=output, filtered=(component != ""))
 
