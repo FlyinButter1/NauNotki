@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  database:
+    image: mysql:5.7
+    volumes:
+      - mysql:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/1-dump.sql
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: change-me
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: change-me
+  app:
+    build:
+      dockerfile: dockerfile
+      context: .
+    environment:
+      - APP_SETTINGS=config.ProductionConfig
+      - SECRET_KEY=fdkjshfhjsdfdskfdsfdcbsjdkfdsdf
+      - DATABASE_URI=mysql+pymysql://user:change-me@database:3306/db
+    ports:
+      - "8000:8000"
+
+volumes:
+  mysql:

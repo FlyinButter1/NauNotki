@@ -1,13 +1,11 @@
 from decouple import config
 
-DATABASE_URI = ""  # temporary fix
-
 class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = config("SECRET_KEY", default="guess-me")
-    SQLALCHEMY_DATABASE_URI = DATABASE_URI
+    SQLALCHEMY_DATABASE_URI = config("DATABASE_URI")
     SQLALCHEMY_POOL_RECYCLE = 280
     POOLING = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
