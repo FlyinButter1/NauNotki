@@ -6,10 +6,10 @@ class User(UserMixin, db.Model):
     __tablename__ = "user"
 
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String, unique=True, nullable=False)
-    username = db.Column(db.String, unique=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
-    role = db.Column(db.String, nullable=False)
+    email = db.Column(db.VARCHAR(40), unique=True, nullable=False)
+    username = db.Column(db.VARCHAR(40), unique=True, nullable=False)
+    password = db.Column(db.Text, nullable=False)
+    role = db.Column(db.Text, nullable=False)
     notes = db.relationship('Notes', backref='user', lazy=True)
     
     def __init__(self, email, username, password, role):
@@ -30,11 +30,11 @@ class Notes(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    subject = db.Column(db.String)
+    subject = db.Column(db.Text)
     grade = db.Column(db.Integer)
-    school_type = db.Column(db.String)
+    school_type = db.Column(db.Text)
     chapter = db.Column(db.Integer)
-    content = db.Column(db.String, nullable = False)
+    content = db.Column(db.Text, nullable = False)
     private = db.Column(db.Integer)
     flashcards = db.relationship('Tests', backref='note', lazy=True)
     tests = db.relationship('Flashcards', backref='note', lazy=True)
@@ -58,7 +58,7 @@ class Flashcards(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     note_id = db.Column(db.Integer, db.ForeignKey('note.id'))
     box = db.Column(db.Integer)
-    content =  db.Column(db.String, nullable = False)
+    content =  db.Column(db.Text, nullable = False)
     last_repetition = db.Column(db.DateTime)
     
     def __init__(self, note_id, content, box = 0):
@@ -73,7 +73,7 @@ class Tests(db.Model):
  
     id = db.Column(db.Integer, primary_key=True)
     note_id = db.Column(db.Integer, db.ForeignKey('note.id'))
-    content =  db.Column(db.String, nullable = False)
+    content =  db.Column(db.Text, nullable = False)
 
     def __init__(self, note_id, content, box = 0):
         self.note_id = note_id

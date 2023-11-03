@@ -5,7 +5,7 @@ from src.models import User
 from flask import url_for
 from wtforms import ValidationError
 import re
-censorship_list = [i[:-2] for i in open("notes/static/censorship_filter.txt", 'r').readlines()[1:] if len(i) >= 3]
+censorship_list = [i[:-2] for i in open("src/notes/static/censorship_filter.txt", 'r').readlines()[1:] if len(i) >= 3]
 def grade_validator(form, field):
     try:  # exception-driven development ftw
         value = int(field.data)
