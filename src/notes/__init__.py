@@ -43,6 +43,9 @@ def my_notes():
         if i == 'school':
             component += f" AND school_type = \'{current_args['school']}\'"
             break
+        if i == 'user_text' and current_args['user_text'] != "":
+            component += f" AND content LIKE \'%{current_args['user_text']}%\'"
+            break
     sql_query = text(
         f"SELECT * FROM note WHERE owner_id = {current_user.id}{component}")
     output = db.get_engine().connect().execute(sql_query).fetchall()
