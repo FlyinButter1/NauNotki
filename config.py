@@ -9,6 +9,7 @@ class Config(object):
     SECRET_KEY = config("SECRET_KEY", default="guess-me")
     SQLALCHEMY_DATABASE_URI = DATABASE_URI
     SQLALCHEMY_POOL_RECYCLE = 280
+    POOLING = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BCRYPT_LOG_ROUNDS = 14
     WTF_CSRF_ENABLED = True
