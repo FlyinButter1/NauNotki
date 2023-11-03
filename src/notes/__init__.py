@@ -16,7 +16,7 @@ run = lambda x: db.get_engine().connect().execute(x)
 @notes_bp.route("/notes/add", methods=["GET", "POST"])
 def add():
     if not current_user.is_authenticated:
-        return main()
+        return redirect(url_for("main.main"))
 
     form = Add()
     if form.validate_on_submit():
@@ -24,7 +24,7 @@ def add():
                      form.chapter.data, form.privacy.data)
         db.session.add(data)
         db.session.commit()
-        return main()
+        return redirect(url_for(".my_notes"))
 
     return render_template("add.html", form=form)
 
@@ -61,7 +61,7 @@ def notes_sql(current_args: MultiDict, demand_only_public = False, demand_only_o
 @notes_bp.route("/notes/my_notes", methods=["GET", "POST"])
 def my_notes():
     if not current_user.is_authenticated:
-        return main()
+        return redirect(url_for("main.main"))
     query = notes_sql(request.args.copy(), False, True)
     output = list(run(query).fetchall())  # below: "own" field nonfunctional
     return render_template("show.html", curlink="my_notes", own=True, content=output, filtered=("AND" in query.text))
