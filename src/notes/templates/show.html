@@ -24,12 +24,14 @@
         {% endif %}
         {% for i in content %}
             <li> <!-- delete button nonfunctional -->
+                <h1>{{i[0]}}</h1>
                 <h3>{{ i[5] }}{% if own %} <a href="/notes/{{ curlink }}?delete={{ i[0] }}">[DELETE]</a>{% endif %}</h3>
                 <p>Klasa <a href="/notes/{{ curlink }}?class={{ i[3] }}">{{ i[3] }}</a>,
                     Szkoła <a href="/notes/{{ curlink }}?school={{ i[4] }}">{{ i[4] }}</a>,
                     Przedmiot <a href="/notes/{{ curlink }}?subject={{ i[2] }}">{{ i[2] }}</a>
                     {% if i[8] is defined %}, Autor <a href="/notes/{{ curlink }}?teacher={{ i[8] }}">{{ i[8] }}</a>{% endif %}
                 <p>{{ i[6] }}</p>
+                <a href="/notes/render_note?note={{i[0]}}">Otwórz notatke</a>
             </li>
         {% endfor %}
     </ul>
