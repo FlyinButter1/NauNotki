@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .przerwa {
+            padding: 5px;
+        }
+        p{
+            margin: 2px;
+            color: red;
+        }
+    </style>
 </head>
 <body>
+<form action="" method="post">
 
+    {{form.subject.label}}
+    {{ form.subject() }}
+
+    {%for i in form.subject.errors %}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+
+    {{form.grade.label}}
+    {{ form.grade() }}
+    {%for i in form.grade.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+
+    {{form.school_type.label}}
+    {{ form.school_type() }}
+    {%for i in form.school_type.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <div class="przerwa"></div>
+
+    {{form.chapter.label}}
+    {{ form.chapter() }}
+    {%for i in form.chapter.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+
+    <div class="przerwa"></div>
+
+    {{form.content.label}}
+    {{ form.content() }}
+    {%for i in form.content.errors%}
+    <p>{{i}}</p>
+    {%endfor%}
+
+    <input type="submit" value="wyślij">
+</form>
 </body>
 </html>

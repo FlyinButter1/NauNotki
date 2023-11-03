@@ -1,6 +1,6 @@
 from decouple import config
 
-DATABASE_URI = "" # temporary fix
+DATABASE_URI = ""  # temporary fix
 
 class Config(object):
     DEBUG = False
@@ -8,6 +8,7 @@ class Config(object):
     CSRF_ENABLED = True
     SECRET_KEY = config("SECRET_KEY", default="guess-me")
     SQLALCHEMY_DATABASE_URI = DATABASE_URI
+    SQLALCHEMY_POOL_RECYCLE = 280
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     BCRYPT_LOG_ROUNDS = 14
     WTF_CSRF_ENABLED = True

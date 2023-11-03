@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p style="text-align: center;">
+        Twoje notatki.
+    </p>
+    {% if filtered %}
+    <p>
+        Wyniki filtrowane. <a href="/notes/my_notes">Wróć do wyników niefiltrowanych.</a>
+    </p>
+    {% endif %}
+    <ul>
+        {% for i in content %}
+            <li> <!-- delete button nonfunctional -->
+                <h3>{{ i[5] }}{% if own %} <a href="/notes/my_notes?delete={{ i[0] }}">[DELETE]</a>{% endif %}</h3>
+                <p>Klasa <a href="/notes/my_notes?class={{ i[3] }}">{{ i[3] }}</a>,
+                    Szkoła <a href="/notes/my_notes?school={{ i[4] }}">{{ i[4] }}</a>,
+                    Przedmiot <a href="/notes/my_notes?subject={{ i[2] }}">{{ i[2] }}</a>
+                <p>{{ i[6] }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

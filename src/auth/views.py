@@ -22,7 +22,7 @@ def register():
         user = User(form.email.data, form.username.data, form.password.data, form.role.data)
         db.session.add(user)
         db.session.commit()
-        return main()
+        return login()
 
     return render_template("register.html", form=form)
 

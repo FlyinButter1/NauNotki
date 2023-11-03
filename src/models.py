@@ -31,16 +31,18 @@ class Notes(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     subject = db.Column(db.String)
-    _class = db.Column(db.Integer)
+    grade = db.Column(db.Integer)
+    school_type = db.Column(db.String)
     chapter = db.Column(db.Integer)
-    content =  db.Column(db.String, nullable = False)
+    content = db.Column(db.String, nullable = False)
     flashcards = db.relationship('Tests', backref='note', lazy=True)
     tests = db.relationship('Flashcards', backref='note', lazy=True)
 
-    def __init__(self, owner_id, content ,subject = '', _class = '', chapter= ''):
+    def __init__(self, owner_id, content, subject = '', grade = '', school_type = '', chapter= ''):
         self.owner_id = owner_id
-        self.subject = subject
-        self._class = _class
+        self.subject = subject.lower()
+        self.grade = grade
+        self.school_type = school_type
         self.chapter = chapter
         self.content = content
 
