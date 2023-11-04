@@ -36,8 +36,9 @@ class Notes(db.Model):
     chapter = db.Column(db.Integer)
     content = db.Column(db.Text, nullable = False)
     private = db.Column(db.Integer)
-    flashcards = db.relationship('Tests', backref='note', lazy=True)
-    tests = db.relationship('Flashcards', backref='note', lazy=True)
+    has_flashcards = db.Column(db.Boolean, default=False)
+    flashcards = db.relationship('Flashcards', backref='note', lazy=True)
+    tests = db.relationship('Tests', backref='note', lazy=True)
 
     def __init__(self, owner_id, content, subject = '', grade = '', school_type = '', chapter= '', private = '0'):
         self.owner_id = owner_id
@@ -58,12 +59,14 @@ class Flashcards(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     note_id = db.Column(db.Integer, db.ForeignKey('note.id'))
     box = db.Column(db.Integer)
-    content =  db.Column(db.Text, nullable = False)
+    front =  db.Column(db.Text, nullable = False)
+    back =  db.Column(db.Text, nullable = False)
     last_repetition = db.Column(db.DateTime)
     
-    def __init__(self, note_id, content, box = 0):
+    def __init__(self, note_id, front, back, box = 0):
         self.note_id = note_id
-        self.content = content
+        self.front = front
+        self.back = back
         self.box = box
 
     
