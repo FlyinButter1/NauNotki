@@ -96,4 +96,4 @@ def render_single_note():
     print(results)
     if len(results) == 0:
         return redirect("/notes/browse_notes")
-    return render_template("rendernote.html", note=results, author=author)
+    return render_template("rendernote.html", note=results, author=author, note_id = note_id)

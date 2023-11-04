@@ -23,11 +23,13 @@ from src.auth.views import auth_bp
 from src.main import main_bp
 from src.notes import notes_bp
 from src.panel import panel_bp
+from src.flashcards import flashcards_bp
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(notes_bp)
 app.register_blueprint(panel_bp)
+app.register_blueprint(flashcards_bp)
 
 with app.app_context(): 
     db.create_all()
