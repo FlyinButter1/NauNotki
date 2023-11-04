@@ -1,1 +1,0 @@
-x86_64-w64-mingw32-gcc -shared -o src/static/c/bmp64lib.dll src/static/c/bmp64lib.c -O3
