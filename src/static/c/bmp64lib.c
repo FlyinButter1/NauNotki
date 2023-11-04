@@ -2,48 +2,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-/**
- * Common Data Types 
- *
- * The data types in this section are essentially aliases for C/C++ 
- * primitive data types.
- *
- * Adapted from http://msdn.microsoft.com/en-us/library/cc230309.aspx.
- * See http://en.wikipedia.org/wiki/Stdint.h for more on stdint.h.
- */
+
+// cleaner struct definitions
 typedef uint8_t  BYTE;
 typedef uint32_t DWORD;
 typedef int32_t  LONG;
 typedef uint16_t WORD;
 
-/**
- * BITMAPFILEHEADER
- *
- * The BITMAPFILEHEADER structure contains information about the type, size,
- * and layout of a file that contains a DIB [device-independent bitmap].
- *
- * Adapted from http://msdn.microsoft.com/en-us/library/dd183374(VS.85).aspx.
- */
-typedef struct 
-{ 
-    WORD   bfType; 
-    DWORD  bfSize; 
-    WORD   bfReserved1; 
-    WORD   bfReserved2; 
-    DWORD  bfOffBits; 
-} __attribute__((__packed__)) 
-BITMAPFILEHEADER; 
+// BITMAPFILEHEADER and BITMAPINFOHEADER adapted from Microsoft Corporation's publicly available resources.
+// Changes have been made to BITMAPINFOHEADER due to specificities of particular Bitmap format.
+typedef struct{
+    WORD   bfType;
+    DWORD  bfSize;
+    WORD   bfReserved1;
+    WORD   bfReserved2;
+    DWORD  bfOffBits;
+} __attribute__((__packed__))
+BITMAPFILEHEADER;
 
-/**
- * BITMAPINFOHEADER
- *
- * The BITMAPINFOHEADER structure contains information about the 
- * dimensions and color format of a DIB [device-independent bitmap].
- *
- * Adapted from http://msdn.microsoft.com/en-us/library/dd183376(VS.85).aspx.
- */
-typedef struct
-{
+typedef struct{
 	DWORD   biSize;
     DWORD   biHeight; // DWORD instead of LONG for no apparent reason
     DWORD   biWidth;  // -||-
@@ -55,23 +32,16 @@ typedef struct
     DWORD   biClrUsed;
     DWORD   biClrImportant;
 } __attribute__((__packed__))
-BITMAPINFOHEADER; 
+BITMAPINFOHEADER;
 
-/**
- * RGBTRIPLE
- *
- * This structure describes a color consisting of relative intensities of
- * red, green, and blue.
- *
- * Adapted from http://msdn.microsoft.com/en-us/library/aa922590.aspx.
- */
-typedef struct
-{
+typedef struct{
     BYTE  rgbtBlue;
     BYTE  rgbtGreen;
     BYTE  rgbtRed;
 } __attribute__((__packed__))
 RGBTRIPLE;
+
+// RGBTRIPLE's constructor (not read from file)
 RGBTRIPLE construct(BYTE rgbtBlue, BYTE rgbtGreen, BYTE rgbtRed){
 	RGBTRIPLE output;
 	output.rgbtBlue = rgbtBlue;
@@ -79,11 +49,13 @@ RGBTRIPLE construct(BYTE rgbtBlue, BYTE rgbtGreen, BYTE rgbtRed){
 	output.rgbtRed = rgbtRed;
 	return output;
 }
+
 void putcolour(FILE* ptr, BYTE rgbtBlue, BYTE rgbtGreen, BYTE rgbtRed){
 	fputc(rgbtBlue, ptr);
 	fputc(rgbtGreen, ptr);
 	fputc(rgbtRed, ptr);
 }
+
 void generate(const char* inputname, const char* outputname, int FACTOR){
 	srand(time(NULL));
 	FILE *inptr = fopen(inputname, "rb");
