@@ -11,6 +11,8 @@ from src import db, bcrypt, login_manager, mylibrary
 from .forms import Register, Login
 from flask_login import login_user, login_required, logout_user, current_user
 from src.main import main
+from random import randint
+from math import log, sqrt
 
 auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
 
@@ -24,7 +26,7 @@ def generate_named_pfp(name: str):
     mylibrary.generate(
         c_char_p(bytes(os.path.abspath("src/static/img/template.bmp"), 'utf-8')),
         c_char_p(bytes(os.path.abspath(f"src/static/img/{name}.bmp"), 'utf-8')),
-        16)
+        int(log(randint(1, 512), sqrt(2))))
 
 @auth_bp.route("/generate_pfp", methods=["POST"])
 def generate_new_pfp():

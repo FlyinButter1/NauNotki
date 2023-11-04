@@ -84,7 +84,7 @@ void generate(const char* inputname, const char* outputname, int FACTOR){
     for(i = 0; i < height; i++){
         // Write row to outfile
         for(j = 0; j < width; j++){
-        	RGBTRIPLE col = (cols[(j/FACTOR)*4+(i/FACTOR)]);
+        	RGBTRIPLE col = (cols[(j/FACTOR)*FACTOR+(i/FACTOR)]);
 	        putcolour(outptr, col.rgbtBlue, col.rgbtGreen, col.rgbtRed);
 		}
         // Write padding at end of row
