@@ -35,25 +35,41 @@ typedef struct{
 BITMAPINFOHEADER;
 
 typedef struct{
-    BYTE  rgbtBlue;
-    BYTE  rgbtGreen;
-    BYTE  rgbtRed;
+    BYTE  Blue;
+    BYTE  Green;
+    BYTE  Red;
 } __attribute__((__packed__))
 RGBTRIPLE;
 
 // RGBTRIPLE's constructor (not read from file)
-RGBTRIPLE construct(BYTE rgbtBlue, BYTE rgbtGreen, BYTE rgbtRed){
+RGBTRIPLE construct(BYTE Blue, BYTE Green, BYTE Red){
 	RGBTRIPLE output;
-	output.rgbtBlue = rgbtBlue;
-	output.rgbtGreen = rgbtGreen;
-	output.rgbtRed = rgbtRed;
+	output.Blue = Blue;
+	output.Green = Green;
+	output.Red = Red;
 	return output;
 }
 
-void putcolour(FILE* ptr, BYTE rgbtBlue, BYTE rgbtGreen, BYTE rgbtRed){
-	fputc(rgbtBlue, ptr);
-	fputc(rgbtGreen, ptr);
-	fputc(rgbtRed, ptr);
+void putcolour(FILE* ptr, RGBTRIPLE colour){
+	fputc(colour.Blue, ptr);
+	fputc(colour.Green, ptr);
+	fputc(colour.Red, ptr);
+}
+
+BYTE brightness(RGBTRIPLE colour){
+    return (BYTE)(0.299 * colour.Red + 0.587 * colour.Green + 0.114 * colour.Blue);
+}
+BYTE rev_blandness(RGBTRIPLE colour){
+    BYTE min = colour.Blue, max = colour.Blue;
+    if (colour.Green < min)
+        min = colour.Green;
+    if (colour.Red < min)
+        min = colour.Red;
+    if (colour.Green > max)
+        max = colour.Green;
+    if (colour.Red > max)
+        max = colour.Red;
+    return max - min;
 }
 
 void generate(const char* inputname, const char* outputname, int FACTOR){
@@ -79,13 +95,18 @@ void generate(const char* inputname, const char* outputname, int FACTOR){
     fputc(0x00, outptr);
     RGBTRIPLE* cols = malloc(sizeof(RGBTRIPLE)*(height*width/(FACTOR*FACTOR)));
     for(i = 0; i < (height*width/(FACTOR*FACTOR)); i++){
-    	cols[i] = construct(rand() % 256, rand() % 256, rand() % 256);
+        loopstart:
+        RGBTRIPLE col = construct(rand() % 256, rand() % 256, rand() % 256);
+        if(brightness(col) <= 50 || brightness(col) >= 200 || rev_blandness(col) < 20){ // ugly colour block
+            goto loopstart; // goto is not advised but who cares, it works
+        }
+        cols[i] = col;
 	}
     for(i = 0; i < height; i++){
         // Write row to outfile
         for(j = 0; j < width; j++){
         	RGBTRIPLE col = (cols[(j/FACTOR)*FACTOR+(i/FACTOR)]);
-	        putcolour(outptr, col.rgbtBlue, col.rgbtGreen, col.rgbtRed);
+	        putcolour(outptr, col);
 		}
         // Write padding at end of row
         for(k = 0; k < padding; k++){

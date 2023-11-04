@@ -12,7 +12,7 @@ from .forms import Register, Login
 from flask_login import login_user, login_required, logout_user, current_user
 from src.main import main
 from random import randint
-from math import log, sqrt
+from math import log
 
 auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
 
@@ -26,7 +26,7 @@ def generate_named_pfp(name: str):
     mylibrary.generate(
         c_char_p(bytes(os.path.abspath("src/static/img/template.bmp"), 'utf-8')),
         c_char_p(bytes(os.path.abspath(f"src/static/img/{name}.bmp"), 'utf-8')),
-        int(log(randint(1, 512), sqrt(2))))
+        2**int(log(randint(1, 119)))) # even better weighted randomness
 
 @auth_bp.route("/generate_pfp", methods=["POST"])
 def generate_new_pfp():
@@ -39,7 +39,7 @@ def generate_new_pfp():
 
 @auth_bp.route("/pfp/<path:filename>")
 def serve_profile_picture(filename):
-    if re.match("[0-9]+\.(bmp|png)", filename):
+    if re.match(r"[0-9]+\.(bmp|png)", filename):
         try:
             return send_file(f'static/img/{filename}')
         except Exception:
@@ -50,7 +50,7 @@ def serve_profile_picture(filename):
 @auth_bp.route("/register", methods=["GET", "POST"])
 def register():
     form=Register()
-    
+
     if form.validate_on_submit():
         user = User(form.email.data, form.username.data, form.password.data, form.role.data)
         db.session.add(user)
@@ -64,19 +64,17 @@ def register():
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
     form=Login()
-    
+
     if form.validate_on_submit():
         user = User.query.filter_by(username = form.username.data).first()
         if user is not None:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return main()
-        
-        
         flash("Nieporawny login i/lub hasło")
 
     return render_template("login.html", form=form)
-        
+
 
 @auth_bp.route("/logout")
 @login_required
