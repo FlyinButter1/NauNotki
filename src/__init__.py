@@ -1,4 +1,4 @@
-import os
+import sys
 
 from flask import Flask
 from flask_bcrypt import Bcrypt
@@ -12,7 +12,13 @@ app.config.from_object(config("APP_SETTINGS"))
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
-mylibrary = CDLL("./src/static/c/bmp64lib.dll")
+mylibrary = ""
+if sys.platform.startswith('win'):
+    mylibrary = CDLL("./src/static/c/bmp64lib.dll")
+elif sys.platform.startswith('linux'):
+    mylibrary = CDLL("./src/static/c/bmp64lib.so")
+else:
+    raise Exception('Unidentified operating system.')
 
 # run app outside of src with flask --app src:app
 
