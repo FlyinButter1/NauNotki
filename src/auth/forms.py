@@ -9,28 +9,29 @@ class Register(FlaskForm):
     username = StringField(
         "",
         validators=[DataRequired(), censorship_validator],
-        render_kw={'placeholder': 'Enter username'}
+        render_kw={'placeholder': 'Nazwa użytkownika'}
     )
     
     email = EmailField(
         "",
         validators=[Email(), DataRequired()],
-        render_kw={'placeholder': 'Enter email'}
-        )
+        render_kw={'placeholder': 'Email'}
+    )
     
     password = PasswordField(
         "",
-        validators=[DataRequired()]
-        )
+        validators=[DataRequired()],
+        render_kw={'placeholder': 'Hasło'}
+    )
     
     confirm = PasswordField(
         "",
         validators=[EqualTo("password"), DataRequired()],
-        render_kw={'placeholder': 'Enter password again'}
+        render_kw={'placeholder': 'Powtórz hasło'}
     )
 
     role = SelectField(
-        "Rola",
+        "",
         validators=[DataRequired()],
         choices=[("uczen","Uczeń"),("nauczyciel","Nauczyciel")]
     )
