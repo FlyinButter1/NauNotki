@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static',filename='rejestracja.css') }}">
+    <link rel="stylesheet" href="{{ url_for('auth.static',filename='css/rejestracja.css') }}">
     <title>Document</title>
 </head>
 <body>
-    <div class = "biały">
+    <div class="bialy">
         <svg class="ołówek" width="105" height="572" viewBox="0 0 105 572" fill="none">
             <rect x="66.1758" y="70.2063" width="38" height="454.543" transform="rotate(7.60466 66.1758 70.2063)" fill="#CACC66"/>
             <path d="M6.08398 520.48L43.6983 525.499L38.2759 566.139C37.9106 568.876 35.3957 570.799 32.6585 570.433L4.95633 566.737C2.21916 566.372 0.296307 563.857 0.661519 561.12L6.08398 520.48Z" fill="#AC6E93"/>
@@ -28,7 +28,7 @@
             <path d="M306.218 212.382L306.218 258.011L266.702 235.196L306.218 212.382Z" fill="#AC2626"/>
             <path d="M236.217 212.382V258.011L275.733 235.196L236.217 212.382Z" fill="#AC2626"/>
         </svg>
-        <div class = "tło">
+        <div class="tlo">
             <div class= "ciemnyniebieski">
                 <div class="niebieski">
                     <div class="loguj">Rejestracja</div>
@@ -68,10 +68,11 @@
                     {%endfor%}
 
                     <input type="submit" value="Zarejestruj" class="zaloguj">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</form>
+
 </body>
 </html>
