@@ -1,0 +1,216 @@
+body {
+    background-color: #1e232f;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.strona-gwna-fr .rejestracja-button {
+    display: flex;
+    width: 268px;
+    height: 94px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 30px;
+    position: fixed;
+    top: 600px;
+    left: 1073px;
+    background-color: #505faf;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.strona-gwna-fr .rejestracja:hover .rejestracja-button{
+    display: flex;
+    width: 268px;
+    height: 94px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 30px;
+    position: fixed;
+    background-color: #1e232f;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 3px solid;
+    border-color: #505faf;
+}
+
+.strona-gwna-fr .text-wrapper {
+    position: relative;
+    width: fit-content;
+    font-family: "Lato", Helvetica;
+    font-weight: 700;
+    color: #1e232f;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.strona-gwna-fr .rejestracja:hover .text-wrapper{
+    position: relative;
+    width: fit-content;
+    font-family: "Lato", Helvetica;
+    font-weight: 700;
+    color: #505faf;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.strona-gwna-fr .logowanie-alt {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    position: fixed;
+    top: 625px;
+    left: 799px;
+}
+
+.strona-gwna-fr .text-wrapper-6 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1px;
+    font-family: "Lato", Helvetica;
+    font-weight: 700;
+    color: #9396d9;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.strona-gwna-fr .logowanie:hover .text-wrapper-6{
+    position: relative;
+    width: fit-content;
+    margin-top: -4px;
+    margin-left: -3px;
+    -webkit-text-stroke: 3px #9396d9;
+    font-family: "Lato", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 40px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.strona-gwna-fr .oczko {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 638px;
+    height: 639px;
+    margin-left: 0;
+}
+
+.strona-gwna-fr .Naunotki {
+    position: fixed;
+    width: 613px;
+    height: 143px;
+    top: 280px;
+    left: 700px;
+    background: linear-gradient(180deg, rgb(154, 180, 246) 0%, rgb(62.97, 24.7, 63.75) 100%);
+    -webkit-background-clip: text !important;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: "Kodchasan", Helvetica;
+    font-weight: 700;
+    color: transparent;
+    font-size: 110px;
+    letter-spacing: 13.2px;
+    line-height: normal;
+}
+
+.strona-gwna-fr .motto {
+    position: fixed;
+    width: 511px;
+    height: 137px;
+    top: 430px;
+    left: 799px;
+}
+
+.strona-gwna-fr .pierw_wers {
+    position: relative;
+}
+
+.strona-gwna-fr .group {
+    width: 396px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 79px;
+}
+
+.strona-gwna-fr .Nauka {
+    width: 198px;
+    height: 66px;
+    position: absolute;
+    top: 8px;
+    left: -30px;
+    font-family: "Lato", Helvetica;
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 55px;
+    text-align: right;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.strona-gwna-fr .Notek {
+    position: absolute;
+    top: 0px;
+    left: 190px;
+    -webkit-text-stroke: 5px #505faf;
+    font-family: "Kodchasan", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 61px;
+    text-align: right;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.strona-gwna-fr .drugi_wers {
+    position: relative;
+    top: 80px;
+}
+
+.strona-gwna-fr .Notki {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Lato", Helvetica;
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 55px;
+    text-align: right;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.strona-gwna-fr .Nauki {
+    position: absolute;
+    top: -10px;
+    left: 235px;
+    -webkit-text-stroke: 4px #505faf;
+    font-family: "Kodchasan", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 61px;
+    text-align: right;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+a {
+    text-decoration:none
+}

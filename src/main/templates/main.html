@@ -2,39 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Strona główna</title>
+    <title>NauNotki</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
+    </style>
+    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{url_for('.static', filename='style_main.css')}}">
 </head>
-<style> /* temporary solution to keep it not looking like absolute shit */
-    .login-bar {
-        display: grid;
-        grid-template-columns: 2fr 1fr 2fr;
-    }
-</style>
 <body>
-    <div class="login-bar">
-        <div style="text-align: left;">
-            {% if username == "" %}
-                Not logged in.
-            {% else %}
-                Logged in as <a href="/panel">{{ username }}</a>. <!-- placeholder for user-page link -->
-            {% endif %}
+    <div class="strona-gwna-fr">
+        <div class="div">
+            <a href="/register">
+                <div class="rejestracja">
+                    <div class="rejestracja-button">
+                        <div class="text-wrapper">Rejestracja</div>
+                    </div>
+            </a>
         </div>
-        <div style="text-align: center;">
-            NauNotki
-        </div>
-        <div style="text-align: right;">
-            {% if username == "" %}
-                <a href="/register">Register</a>
-                <a href="/login">Login</a>
-            {% else %}
-                <a href="/notes/browse_notes">Browse others' notes</a>
-                <a href="/notes/my_notes">My notes</a>
-                <a href="/notes/add">Add new notes</a>
-                <a href="/panel">Panel</a>
-                <a href="/logout">Logout</a>
-                
-            {% endif %}
+            <a href="/login">
+                <div class="logowanie">
+                    <div class="logowanie-alt">
+                        <div class="text-wrapper-6">Logowanie</div>
+                    </div>
+                </div>
+            </a>
+            <img class="oczko" src="{{url_for('.static', filename='img/Oczko2.png')}}" />
+            <div class="Naunotki">NauNotki</div>
+            <div class="motto">
+                <div class="pierw_wers">
+                    <div class="group">
+                        <div class="Nauka">Nauka z</div>
+                        <div class="Notek">notek</div>
+                    </div>
+                    <div class="drugi_wers">
+                        <div class="Notki">Notki dla</div>
+                        <div class="Nauki">nauki</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</body>
+    </body>
 </html>
