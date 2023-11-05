@@ -7,13 +7,13 @@ body {
     height: 100%;
     overflow-y: hidden;
 }
-.biały {
+.bialy {
     width: 60%;
     height: 100%;
     background: #FFF;
     position:absolute;
 }
-.tło {
+.tlo {
     width: 50%;
     height: 80%;
     border: 10px solid #1E232F;
@@ -48,7 +48,7 @@ body {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    left:18%;
+    text-align: center;
     top:2%;
     position:relative;
 }
