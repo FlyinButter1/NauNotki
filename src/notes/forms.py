@@ -6,8 +6,8 @@ from flask import url_for
 from wtforms import ValidationError
 import re
 
-# censorship_list = [i[:-2] for i in open("/notes/static/censorship_filter.txt", 'r').readlines()[1:] if len(i) >= 3]
-censorship_list = []  # suddenly broke for no reason, working on it
+# censorship list shamelessly stolen from polish wikipedia, source in file
+censorship_list = [i[:-2] for i in open("src/notes/static/censorship_filter.txt", 'r').readlines()[1:] if len(i) >= 3]
 
 def grade_validator(form, field):
     try:  # exception-driven development ftw
@@ -18,7 +18,7 @@ def grade_validator(form, field):
         raise ValidationError("Field must be numeric.")
 
 
-def censorship_validator(form, field):  # censorship list shamelessly stolen from polish wikipedia
+def censorship_validator(form, field):
     if any([re.match(i, field.data) for i in censorship_list]):
         raise ValidationError("Field must not contain offensive terminology.")
 

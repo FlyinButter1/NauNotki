@@ -3,28 +3,31 @@ from wtforms import StringField, EmailField, PasswordField, RadioField
 from wtforms.validators import DataRequired, Email, EqualTo, InputRequired
 from src import db
 from src.models import User
+from src.notes.forms import censorship_validator
 
 class Register(FlaskForm):
     username = StringField(
         "Username",
-        validators=[DataRequired()],
-        
+        validators=[DataRequired(), censorship_validator],
+        render_kw={'placeholder': 'Enter username'}
     )
     
     email = EmailField(
         "Email",
-        validators=[Email(), DataRequired()]
-        
+        validators=[Email(), DataRequired()],
+        render_kw={'placeholder': 'Enter email'}
         )
     
     password = PasswordField(
         "Password",
-        validators=[DataRequired()]
+        validators=[DataRequired()],
+        render_kw={'placeholder': 'Enter password'}
         )
     
     confirm = PasswordField(
         "Confirm Password",
-        validators=[EqualTo("password"), DataRequired()] 
+        validators=[EqualTo("password"), DataRequired()],
+        render_kw={'placeholder': 'Enter password again'}
     )
 
     role = RadioField(
@@ -32,10 +35,10 @@ class Register(FlaskForm):
         validators=[DataRequired()],
         choices=[("uczen","Uczeń"),("nauczyciel","Nauczyciel")]
     )
-        
-    
-    def validate(self, extra_validators):
-        default_validation =  super().validate(extra_validators)
+
+    # the None default for extra_validators is there only for IDE to stop reporting nonexistent errors
+    def validate(self, extra_validators=None) -> bool:
+        default_validation = super().validate(extra_validators)
 
         if not default_validation:
             return False
