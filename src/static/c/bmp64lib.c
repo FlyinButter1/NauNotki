@@ -84,7 +84,10 @@ unsigned int hash(const char* word){
 }
 
 void generate(const char* inputname, const char* outputname, const char* username, int FACTOR){
-	srand(hash(username));
+    clock_t start_time, end_time; // time measurement for debug and control purposes
+    start_time = clock();
+    unsigned int randomness_hash = hash(username);
+	srand(randomness_hash);
 	FILE *inptr = fopen(inputname, "rb");
 	FILE *outptr = fopen(outputname, "wb");
 	if(inptr == NULL){
@@ -124,8 +127,9 @@ void generate(const char* inputname, const char* outputname, const char* usernam
             fputc(0x00, outptr);
         }
     }
-    fseek(outptr, 0, SEEK_SET);
-    unsigned char byte = 0x42; // Example byte value
-    fwrite(&byte, 1, 1, outptr); // Write one byte to the file
+    fclose(inptr);
     fclose(outptr);
+    end_time = clock();
+    printf("Generated profile picture for user %s at %s, factor %d, hash %u, size %d x %d. Took %.10g seconds.\n",
+    username, outputname, FACTOR, randomness_hash, height, width, (((double)(end_time - start_time)) / CLOCKS_PER_SEC));
 }
