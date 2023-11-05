@@ -1,6 +1,6 @@
 import os.path
 import re
-from ctypes import c_char_p
+from ctypes import c_char_p, c_int
 
 from flask import render_template, url_for, redirect, flash, send_file, abort, make_response
 from flask import Blueprint
@@ -16,8 +16,7 @@ from math import log
 
 auth_bp = Blueprint(
     "auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
-frequency_list = [
-    1, 2, 2, [4 for _ in range(4)], [8 for _ in range(8)], [16 for _ in range(16)], [8 for _ in range(32)]]
+frequency_list = [1, 2, 2]+[4 for _ in range(4)]+[8 for _ in range(8)]+[16 for _ in range(16)]+[8 for _ in range(32)]
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
@@ -29,7 +28,7 @@ def generate_named_pfp(name: str, username=""):
         c_char_p(bytes(os.path.abspath("src/static/img/template.bmp"), 'utf-8')),
         c_char_p(bytes(os.path.abspath(f"src/static/img/{name}.bmp"), 'utf-8')),
         c_char_p(bytes(username, 'utf-8')),
-        choice(frequency_list))  # the randomness is now in the username
+        c_int(choice(frequency_list)))  # the randomness is now in the username
 
 @auth_bp.route("/generate_pfp", methods=["POST"])
 def generate_new_pfp():
