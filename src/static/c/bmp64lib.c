@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
+#include <ctype.h>
 
 // cleaner struct definitions
 typedef uint8_t  BYTE;
@@ -71,9 +73,18 @@ BYTE rev_blandness(RGBTRIPLE colour){
         max = colour.Red;
     return max - min;
 }
+//               a,  b,  c,  d,  e,  f,  g,  h,  i, j,  k,  l,  m,  n,  o, p,  q, r, s, t, u,  v,  w,  x,  y,   z
+int weights[] = {-2, 43, 17, 11, -1, 31, 37, 5, -5, 59, 53, 13, 23, 2, -3, 41, 0, 7, 3, 1, -7, 47, 29, 61, -11, 67};
+unsigned int hash(const char* word){
+    unsigned int output = 1048576;
+    for(int i = 1; i <= strlen(word); i *= 2){
+        output += weights[(word[i-1]%32)-1]*toupper(word[i-1]);
+    }
+    return (output ^ 471001599);
+}
 
-void generate(const char* inputname, const char* outputname, int FACTOR){
-	srand(time(NULL));
+void generate(const char* inputname, const char* outputname, const char* username, int FACTOR){
+	srand(hash(username));
 	FILE *inptr = fopen(inputname, "rb");
 	FILE *outptr = fopen(outputname, "wb");
 	if(inptr == NULL){
@@ -83,7 +94,7 @@ void generate(const char* inputname, const char* outputname, int FACTOR){
     BITMAPFILEHEADER bf;
     fread(&bf, sizeof(BITMAPFILEHEADER), 1, inptr);
     BITMAPINFOHEADER bi;
-    fread(&bi, sizeof(BITMAPINFOHEADER)+1, 1, inptr);
+    fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
     //printf("%08X\n", bi.biHeight); debug
     //printf("%08X\n", bi.biWidth); debug
 	int height = bi.biHeight, width = bi.biWidth, i, j, k;
