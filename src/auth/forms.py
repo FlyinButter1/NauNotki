@@ -7,31 +7,30 @@ from src.notes.forms import censorship_validator
 
 class Register(FlaskForm):
     username = StringField(
-        "Username",
-        validators=[DataRequired(), censorship_validator],
+        "",
+        validators=[DataRequired()],
         render_kw={'placeholder': 'Enter username'}
     )
     
     email = EmailField(
-        "Email",
-        validators=[Email(), DataRequired()],
+        "",
+        validators=[Email(), DataRequired()]
         render_kw={'placeholder': 'Enter email'}
         )
     
     password = PasswordField(
-        "Password",
-        validators=[DataRequired()],
-        render_kw={'placeholder': 'Enter password'}
+        "",
+        validators=[DataRequired()]
         )
     
     confirm = PasswordField(
-        "Confirm Password",
-        validators=[EqualTo("password"), DataRequired()],
+        "",
+        validators=[EqualTo("password"), DataRequired()] 
         render_kw={'placeholder': 'Enter password again'}
     )
 
     role = RadioField(
-        "Role",
+        "Rola",
         validators=[DataRequired()],
         choices=[("uczen","Uczeń"),("nauczyciel","Nauczyciel")]
     )
@@ -54,12 +53,12 @@ class Register(FlaskForm):
 class Login(FlaskForm):
         
     username = StringField(
-        "Username",
+        "",
         validators=[DataRequired()],
         
     )
     
     password = PasswordField(
-        "Password",
+        "",
         validators=[DataRequired()]
         )
