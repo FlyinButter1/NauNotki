@@ -14,14 +14,16 @@
     </p>
     {% endif %}
     <ul>
-        <form action="/notes/{{ curlink }}" method="GET">
-            <label for="text_input">Wyszukaj:</label>
-            <input type="text" id="text_input" name="user_text" placeholder="Type your text here">
-            <input type="submit" value="Submit">
-        </form>
-        {% if content|length == 0 %}
-        <p>Brak wyników.</p>
-        {% endif %}
+        <div style="list-style-type: none;"> <!-- ignore any IDE warnings about these elements, they work -->
+            <li><form action="/notes/{{ curlink }}" method="GET">
+                <label for="text_input">Wyszukaj:</label>
+                <input type="text" id="text_input" name="user_text" placeholder="Type your text here">
+                <input type="submit" value="Submit">
+            </form></li><br>
+            {% if content|length == 0 %}
+                <li>Brak wyników.</li>
+            {% endif %}
+        </div>
         {% for i in content %}
             <li> <!-- delete button nonfunctional -->
                 <h1>{{i[0]}}</h1>
@@ -29,9 +31,9 @@
                 <p>Klasa <a href="/notes/{{ curlink }}?class={{ i[3] }}">{{ i[3] }}</a>,
                     Szkoła <a href="/notes/{{ curlink }}?school={{ i[4] }}">{{ i[4] }}</a>,
                     Przedmiot <a href="/notes/{{ curlink }}?subject={{ i[2] }}">{{ i[2] }}</a>
-                    {% if i[8] is defined %}, Autor <a href="/notes/{{ curlink }}?teacher={{ i[8] }}">{{ i[8] }}</a>{% endif %}
+                    {% if i[8] is defined %}, Autor <a href="/panel/{{ i[8] }}">{{ i[8] }}</a>{% endif %}
                 <p>{{ i[6] }}</p>
-                <a href="/notes/render_note?note={{i[0]}}">Otwórz notatke</a>
+                <a href="/notes/render_note/{{ i[0] }}">Otwórz notatkę</a>
             </li>
         {% endfor %}
     </ul>

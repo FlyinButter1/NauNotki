@@ -75,17 +75,9 @@ def browse_notes():
     return render_template(
         "show.html", curlink="browse_notes", own=True, content=sample(output, len(output)), filtered=("AND" in query.text))
 
-@notes_bp.route("/notes/render_note", methods=["GET", "POST"])
-def render_single_note():
-    note_id = ""
+@notes_bp.route("/notes/render_note/<path:note_id>", methods=["GET", "POST"])
+def render_single_note(note_id):
     user_id = ""
-    current_args = request.args.copy()
-    for i in current_args:
-        if i == 'note':
-            note_id = current_args['note']
-            break
-    else:
-        return redirect("/notes/browse_notes")
     if current_user.is_authenticated:
         user_id = current_user.id
     query1 = f"SELECT * FROM note WHERE id = {note_id} " \
