@@ -44,5 +44,5 @@ app.register_blueprint(panel_bp)
 app.register_blueprint(flashcards_bp)
 app.register_blueprint(test_bp)
 
-with app.app_context(): 
+with app.app_context():
     db.create_all()

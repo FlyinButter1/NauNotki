@@ -95,10 +95,10 @@ void generate(const char* inputname, const char* outputname, int FACTOR){
     fputc(0x00, outptr);
     RGBTRIPLE* cols = malloc(sizeof(RGBTRIPLE)*(height*width/(FACTOR*FACTOR)));
     for(i = 0; i < (height*width/(FACTOR*FACTOR)); i++){
-        loopstart:
         RGBTRIPLE col = construct(rand() % 256, rand() % 256, rand() % 256);
         if(brightness(col) <= 50 || brightness(col) >= 200 || rev_blandness(col) < 20){ // ugly colour block
-            goto loopstart; // goto is not advised but who cares, it works
+            i--;
+            continue;
         }
         cols[i] = col;
 	}
