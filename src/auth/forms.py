@@ -14,7 +14,7 @@ class Register(FlaskForm):
     
     email = EmailField(
         "",
-        validators=[Email(), DataRequired()]
+        validators=[Email(), DataRequired()],
         render_kw={'placeholder': 'Enter email'}
         )
     
@@ -25,7 +25,7 @@ class Register(FlaskForm):
     
     confirm = PasswordField(
         "",
-        validators=[EqualTo("password"), DataRequired()] 
+        validators=[EqualTo("password"), DataRequired()],
         render_kw={'placeholder': 'Enter password again'}
     )
 
