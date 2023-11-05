@@ -12,7 +12,7 @@ typedef int32_t  LONG;
 typedef uint16_t WORD;
 
 // BITMAPFILEHEADER and BITMAPINFOHEADER adapted from Microsoft Corporation's publicly available resources.
-// Changes have been made to BITMAPINFOHEADER due to specificities of particular Bitmap format.
+// Changes have been made to BITMAPINFOHEADER due to specificities of particular bitmap format.
 typedef struct{
     WORD   bfType;
     DWORD  bfSize;
