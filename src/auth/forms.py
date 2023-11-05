@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, PasswordField, RadioField
+from wtforms import StringField, EmailField, PasswordField, RadioField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo, InputRequired
 from src import db
 from src.models import User
@@ -29,7 +29,7 @@ class Register(FlaskForm):
         render_kw={'placeholder': 'Enter password again'}
     )
 
-    role = RadioField(
+    role = SelectField(
         "Rola",
         validators=[DataRequired()],
         choices=[("uczen","Uczeń"),("nauczyciel","Nauczyciel")]
