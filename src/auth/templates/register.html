@@ -3,63 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='rejestracja.css') }}">
     <title>Document</title>
-    <style>
-        .przerwa {
-            padding: 5px;
-        }
-        p{
-            margin: 2px;
-            color: red;
-        }
-    </style>
 </head>
 <body>
-    <form action="" method="post">
+    <div class = "biały">
+        <svg class="ołówek" width="105" height="572" viewBox="0 0 105 572" fill="none">
+            <rect x="66.1758" y="70.2063" width="38" height="454.543" transform="rotate(7.60466 66.1758 70.2063)" fill="#CACC66"/>
+            <path d="M6.08398 520.48L43.6983 525.499L38.2759 566.139C37.9106 568.876 35.3957 570.799 32.6585 570.433L4.95633 566.737C2.21916 566.372 0.296307 563.857 0.661519 561.12L6.08398 520.48Z" fill="#AC6E93"/>
+            <path d="M96.5504 9.5L104.15 75.5L66.1504 70.5L96.5504 9.5Z" fill="#D9D9D9"/>
+            <path d="M98.6504 0V27L88.1504 25.5L98.6504 0Z" fill="#3E3E3E"/>
+            </svg>
+        <svg class="okulary" width="363" height="384" viewBox="0 0 363 384" fill="none">
+            <path d="M243.15 231.5H256.15L285.744 374.511H323.379V383.543H285.744H276.15L243.15 231.5Z" fill="#1E232F"/>
+            <path d="M193.15 231.5H202.15L228.744 374.511H266.379V383.543H228.744H219.15L193.15 231.5Z" fill="#1E232F"/>
+            <path d="M334.109 154.048H324.516L351.081 306.091H362.15L334.109 154.048Z" fill="#1E232F"/>
+            <path d="M347.097 125.446C347.097 194.452 291.156 250.392 222.15 250.392C153.145 250.392 97.2042 194.452 97.2042 125.446C97.2042 56.4403 153.145 0.5 222.15 0.5C291.156 0.5 347.097 56.4403 347.097 125.446Z" fill="#E8F9F8"/>
+            <path d="M333.548 119.425C333.548 165.983 297.153 203.726 252.258 203.726C207.363 203.726 170.968 165.983 170.968 119.425C170.968 72.8665 207.363 35.1237 252.258 35.1237C297.153 35.1237 333.548 72.8665 333.548 119.425Z" fill="#7793DB"/>
+            <path d="M324.516 111.145C324.516 144.817 297.894 172.113 265.054 172.113C232.214 172.113 205.591 144.817 205.591 111.145C205.591 77.4736 232.214 50.1774 265.054 50.1774C297.894 50.1774 324.516 77.4736 324.516 111.145Z" fill="#1E232F"/>
+            <path d="M241.72 81.0376C241.72 94.7557 230.6 105.876 216.882 105.876C203.164 105.876 192.043 94.7557 192.043 81.0376C192.043 67.3196 203.164 56.1989 216.882 56.1989C230.6 56.1989 241.72 67.3196 241.72 81.0376Z" fill="white"/>
+            <path d="M119.785 144.5V154.048L0.150391 121.5L2.15039 108.5L5.15039 85H13.6504L9.15039 113L119.785 144.5Z" fill="#1E232F"/>
+            <path d="M345.591 44.156H180.753L112.258 56.199L110 63.7259L106.236 78.027H112.258L116.774 63.7259L182.258 56.199V170.608L207.097 202.221L250.753 227.812H289.892L327.527 202.221L345.591 170.608H335.054L312.473 200.715L283.871 217.274H256.774L222.15 200.715L193.548 170.608L192.043 114.156V57.7044H335.054V170.608H345.591V57.7044V44.156Z" fill="#232A38"/>
+            <path d="M255.268 235.339C255.268 243.653 262.008 250.393 270.322 250.393C278.636 250.393 285.376 243.653 285.376 235.339C285.376 227.025 278.636 220.285 270.322 220.285C262.008 220.285 255.268 227.025 255.268 235.339Z" fill="#AC2626"/>
+            <path d="M306.218 212.382L306.218 258.011L266.702 235.196L306.218 212.382Z" fill="#AC2626"/>
+            <path d="M236.217 212.382V258.011L275.733 235.196L236.217 212.382Z" fill="#AC2626"/>
+        </svg>
+        <div class = "tło">
+            <div class= "ciemnyniebieski">
+                <div class="niebieski">
+                    <div class="loguj">Rejestracja</div>
+                    
+                    <form action="" method="post">
+                    {{form.email.label}}
+                    {{ form.email() }}
 
-    {{form.email.label}}
-    {{ form.email() }}
+                    {%for i in form.email.errors %}
+                    <p>{{i}}</p>
+                    {%endfor%}
+                    <br>
 
-    {%for i in form.email.errors %}
-    <p>{{i}}</p>
-    {%endfor%}
+                    {{form.username.label}}
+                    {{ form.username() }}
+                    {%for i in form.username.errors%}
+                    <p>{{i}}</p>
+                    {%endfor%}
 
-    <div class="przerwa"></div>
+                    {{form.password.label}}
+                    {{ form.password() }}
+                    {%for i in form.password.errors%}
+                    <p>{{i}}</p>
+                    {%endfor%}
 
+                    {{form.confirm.label}}
+                    {{ form.confirm() }}
+                    {%for i in form.confirm.errors%}
+                    <p>{{i}}</p>
+                    {%endfor%}
+                    <br>
 
-    {{form.username.label}}
-    {{ form.username() }}
-    {%for i in form.username.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
+                    {{form.role.label}}
+                    {{ form.role() }}
+                    {%for i in form.role.errors%}
+                    <p>{{i}}</p>
+                    {%endfor%}
 
-    <div class="przerwa"></div>
-
-
-    {{form.password.label}}
-    {{ form.password() }}
-    {%for i in form.password.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
-
-    <div class="przerwa"></div>
-
-    {{form.confirm.label}}
-    {{ form.confirm() }}
-    {%for i in form.confirm.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
-
-
-    <div class="przerwa"></div>
-    
-    {{form.role.label}}
-    {{ form.role() }}
-    {%for i in form.role.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
-
-    <input type="submit" value="wyślij">
+                    <input type="submit" value="Zarejestruj" class="zaloguj">
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 </body>
 </html>
