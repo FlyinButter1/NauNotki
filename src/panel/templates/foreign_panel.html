@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+        .przerwa {
+            padding: 5px;
+        }
+        p{
+            margin: 2px;
+            color: red;
+        }
+        .login-bar { /* temporary solution to keep it not looking like absolute shit */
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+    </style>
+</head>
+<body>
+<h1>Użytkownik: {{ userdata[2] }}</h1>
+<div class="login-bar">
+  <div style="text-align: left;">
+    Email: <a href="mailto:{{ userdata[1] }}">{{ userdata[1] }}</a><br>
+    Account type: {{ userdata[4] }}<br>
+    User's notes: <a href="/notes/browse_notes?teacher={{ userdata[2] }}">see here</a><br>
+  </div>
+  <div style="text-align: right;">
+    {% if pfp_exists %}
+      <img src="/pfp/{{ userdata[0] }}.bmp" id="pfp" height="128">
+    {% endif %}
+  </div>
+</div>
+</body>
+</html>

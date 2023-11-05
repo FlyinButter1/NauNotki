@@ -12,6 +12,16 @@ from .forms import ChangePassword
 panel_bp = Blueprint(
     "panel_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/panel-static')
 
+@panel_bp.route("/panel/<path:username>", methods=["GET"])
+def userpage(username):
+    sql_query = text(f"SELECT * FROM user WHERE username = \'{username}\'")
+    userdata = db.get_engine().connect().execute(sql_query).fetchall()
+    if len(userdata) != 1:
+        abort(404)
+    if userdata[0][0] == current_user.id:
+        return redirect("/panel")
+    return render_template("foreign_panel.html", userdata=userdata[0],
+                           pfp_exists=profile_picture_existence_checker(f"{userdata[0][0]}.bmp"))
 
 @panel_bp.route("/panel", methods=["POST", "GET"])
 def panel():
@@ -67,7 +77,7 @@ def change_type():
 
 @panel_bp.route("/account")
 def account():
-    pass
+    abort(418)
 
 def profile_picture_existence_checker(filename):
     return os.path.exists(f'src/static/img/{filename}')

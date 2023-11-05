@@ -14,7 +14,8 @@ from src.main import main
 from random import randint
 from math import log
 
-auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
+auth_bp = Blueprint(
+    "auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -33,7 +34,7 @@ def generate_new_pfp():
     try:
         filename = str(current_user.id)
         generate_named_pfp(filename)
-        return make_response('', 204)  # no content to be sent back - hence 204
+        return make_response('File created successfully.', 201)  # file created - hence http 201
     except Exception:
         abort(403)
 
