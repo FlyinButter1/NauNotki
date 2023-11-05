@@ -9,7 +9,7 @@ from src.main import main
 from .forms import Add
 from src.models import Notes
 
-notes_bp = Blueprint('notes', __name__, template_folder='templates', static_folder="static")
+notes_bp = Blueprint('notes', __name__, template_folder='templates', static_folder="static", static_url_path='/notes-static')
 
 run = lambda x: db.get_engine().connect().execute(x)
 

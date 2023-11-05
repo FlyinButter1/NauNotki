@@ -9,7 +9,7 @@ from src import db, bcrypt
 from src.models import User
 from .forms import ChangePassword
 
-panel_bp = Blueprint("panel_bp", __name__, template_folder="templates")
+panel_bp = Blueprint("panel_bp", __name__, template_folder="templates", static_folder="static", static_url_path='/panel-static')
 
 
 @panel_bp.route("/panel", methods=["POST", "GET"])

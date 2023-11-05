@@ -14,7 +14,7 @@ from src.main import main
 from random import randint
 from math import log
 
-auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static")
+auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
 
 @login_manager.user_loader
 def load_user(user_id):
