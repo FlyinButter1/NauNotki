@@ -14,7 +14,8 @@ from src.main import main
 from random import randint
 from math import log
 
-auth_bp = Blueprint("auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
+auth_bp = Blueprint(
+    "auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -26,14 +27,14 @@ def generate_named_pfp(name: str):
     mylibrary.generate(
         c_char_p(bytes(os.path.abspath("src/static/img/template.bmp"), 'utf-8')),
         c_char_p(bytes(os.path.abspath(f"src/static/img/{name}.bmp"), 'utf-8')),
-        2**int(log(randint(1, 119)))) # even better weighted randomness
+        2**int(log(randint(1, 119))))  # even better weighted randomness
 
 @auth_bp.route("/generate_pfp", methods=["POST"])
 def generate_new_pfp():
     try:
         filename = str(current_user.id)
         generate_named_pfp(filename)
-        return make_response('', 204)  # no content to be sent back - hence 204
+        return make_response('File created successfully.', 201)  # file created - hence http 201
     except Exception:
         abort(403)
 
@@ -55,8 +56,9 @@ def register():
         user = User(form.email.data, form.username.data, form.password.data, form.role.data)
         db.session.add(user)
         db.session.commit()
-        jozef = db.get_engine().connect().execute(text(f"SELECT id FROM user WHERE username = \'{form.username.data}\'")).fetchall()[0][0]
-        generate_named_pfp(jozef)
+        received_data = db.get_engine().connect().execute(
+            text(f"SELECT id FROM user WHERE username = \'{form.username.data}\'")).fetchall()[0][0]
+        generate_named_pfp(received_data)
         return login()
 
     return render_template("register.html", form=form)
@@ -82,8 +84,3 @@ def logout():
     logout_user()
     flash("Wylogowano")
     return redirect(url_for("auth.login"))
-
-@auth_bp.route("/login_test")
-@login_required
-def login_test():
-    return "tajny shit"

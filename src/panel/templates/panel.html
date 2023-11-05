@@ -1,62 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
-<script type="text/javascript">
-    function scr1(){
-        let userInput = prompt("New email");
-        if (userInput !== null) {
-            const url = '/change_email';
-            const data = new URLSearchParams();
-            data.append('email', userInput);
-            const requestOptions = {
-              method: 'POST',
-              body: data,
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-              },
-            };
-            fetch(url, requestOptions);
-        } else {
-          alert("You did not enter anything.");
-        }
-        setTimeout(function() {
-            location.reload();
-        }, 1100);
-    }
-    function scr2(){
-        const url = '/change_type';
-        const data = new URLSearchParams();
-        data.append('curtype', '{{ account_type }}');
-        const requestOptions = {
-          method: 'POST',
-          body: data,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        };
-        fetch(url, requestOptions);
-        setTimeout(function() {
-            location.reload();
-        }, 700);
-    }
-    function scr3(){
-        const url = '/generate_pfp';
-        const data = new URLSearchParams();
-        const requestOptions = {
-          method: 'POST',
-          body: data,
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        };
-        fetch(url, requestOptions);
-        setTimeout(function() {
-            location.reload();
-        }, 1300);
-    }
-    document.getElementById('pfp').onclick = function() {
-        scr3();
-    };
-</script>
+<script src="{{url_for('.static', filename='panel.js')}}"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,7 +58,7 @@
     <div class="login-bar">
         <div style="text-align: left;">
             Email: {{ email }} <button onclick="scr1()">Change email</button><br>
-            Account type: {{ account_type }} <button onclick="scr2()">Change type</button><br>
+            Account type: {{ account_type }} <button onclick="scr2('{{ account_type }}')">Change type</button><br>
             My notes: <a href="notes/my_notes">check</a><br>
         </div>
         <div style="text-align: right;">
