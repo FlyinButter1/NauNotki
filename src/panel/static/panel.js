@@ -38,3 +38,7 @@ function scr3(){
         location.reload();
     }, 1300);
 }
+function scr4(){
+    alert("This is your profile picture, randomly generated using hashing algorithms and complicated math.\n"+
+    "It's a symbol of our advanced computerised teaching techniques. Enjoy!")
+}
