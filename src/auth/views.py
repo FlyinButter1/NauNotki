@@ -11,29 +11,31 @@ from src import db, bcrypt, login_manager, mylibrary
 from .forms import Register, Login
 from flask_login import login_user, login_required, logout_user, current_user
 from src.main import main
-from random import randint
+from random import randint, choice
 from math import log
 
 auth_bp = Blueprint(
     "auth", __name__, template_folder="templates", static_folder="static", static_url_path='/auth-static')
-
+frequency_list = [
+    1, 2, 2, [4 for _ in range(4)], [8 for _ in range(8)], [16 for _ in range(16)], [8 for _ in range(32)]]
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
 
 login_manager.login_view = "auth.login"
 
-def generate_named_pfp(name: str):
+def generate_named_pfp(name: str, username=""):
     mylibrary.generate(
         c_char_p(bytes(os.path.abspath("src/static/img/template.bmp"), 'utf-8')),
         c_char_p(bytes(os.path.abspath(f"src/static/img/{name}.bmp"), 'utf-8')),
-        2**int(log(randint(1, 119))))  # even better weighted randomness
+        c_char_p(bytes(username, 'utf-8')),
+        choice(frequency_list))  # the randomness is now in the username
 
 @auth_bp.route("/generate_pfp", methods=["POST"])
 def generate_new_pfp():
     try:
         filename = str(current_user.id)
-        generate_named_pfp(filename)
+        generate_named_pfp(filename, current_user.username)
         return make_response('File created successfully.', 201)  # file created - hence http 201
     except Exception:
         abort(403)
@@ -58,7 +60,7 @@ def register():
         db.session.commit()
         received_data = db.get_engine().connect().execute(
             text(f"SELECT id FROM user WHERE username = \'{form.username.data}\'")).fetchall()[0][0]
-        generate_named_pfp(received_data)
+        generate_named_pfp(received_data, form.username.data)
         return login()
 
     return render_template("register.html", form=form)
