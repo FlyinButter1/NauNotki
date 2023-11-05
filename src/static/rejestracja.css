@@ -10,7 +10,7 @@ body {
 .biały {
     width: 60%;
     height: 100%;
-    background: #FFF;
+    background: #FFFFFF;
     position:absolute;
 }
 .tło {
@@ -29,10 +29,10 @@ body {
     left: 10%;
     border-radius: 34px;
     position:relative;
-    background: #7C7FB5;
+    background: #3F4A89;
 }
 .niebieski {
-    background: #9397DA;
+    background: #505FAF;
     width: 85%;
     height: 90%;
     border-radius: 34px;
@@ -64,10 +64,10 @@ input[type="text" i] {
     height: 6%;
     font-size: 32px;
     left: 10%;
-    top: 40%;
+    top: 15%;
     border: 0px solid #000000; 
 }
-input[type="password" i] {
+input[type="email" i] {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -75,7 +75,29 @@ input[type="password" i] {
     height: 6%;
     font-size: 32px;
     left: 10%;
-    top: 30%;
+    top: 25%;
+    border: 0px solid #000000; 
+}
+input[id="password" i] {
+    position:absolute;
+    color: #000000;
+    border-radius: 30px;
+    width: 80%;
+    height: 6%;
+    font-size: 32px;
+    left: 10%;
+    top: 35%;
+    border: 0px solid #000000; 
+}
+input[id="confirm"i] {
+    position:absolute;
+    color: #000000;
+    border-radius: 30px;
+    width: 80%;
+    height: 6%;
+    font-size: 32px;
+    left: 10%;
+    top: 45%;
     border: 0px solid #000000; 
 }
 input[type="submit" i] {
@@ -98,8 +120,36 @@ input[type="submit" i] {
     font-weight: 700;
     line-height: normal;
 }
-.oczek {
+select[id="role"]{
+    position:absolute;
+    color: #000000;
+    border-radius: 30px;
+    width: 80%;
+    height: 6%;
+    font-size: 32px;
+    left: 10%;
+    top: 55%;
+    border: 0px solid #000000; 
+}
+option{
+    font-size:24px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    color: #767676;
+}
+::placeholder{
+    font-size:24px;
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    border-radius: 30px;
+}
+.okulary {
     position:absolute;
     top: 50%;
     left: 20%;
+}
+.ołówek{
+    position:absolute;
+    top: 31%;
+    left: 13.75%;
 }
