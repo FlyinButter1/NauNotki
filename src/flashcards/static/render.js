@@ -1,4 +1,3 @@
-
 function makeGetRequest(path) { 
     return new Promise(function (resolve, reject) { 
         axios.get(path).then( 
@@ -34,32 +33,17 @@ async function main(){
 
 
 function flip(){
-
-
-    if(fiszka.innerHTML == fiszki[current]['back'])
-    {
-        fiszka.innerHTML = fiszki[current]['front'];
-    }
-    else
-    {
-        fiszka.innerHTML = fiszki[current]['back'];
-    }
-    
+    fiszka.innerHTML = fiszki[current][(fiszka.innerHTML == fiszki[current]['back'] ? 'front' : 'back')];
 }
 
-function prawo()
-{
-    if (current + 1 < Object.keys( fiszki ).length)
-    {
+function prawo(){
+    if (current + 1 < Object.keys( fiszki ).length){
         current += 1;
         fiszka.innerHTML = fiszki[current]['back'];
     }
-    
 }
-function lewo()
-{
-    if (current - 1 >= 0)
-    {
+function lewo(){
+    if (current - 1 >= 0){
         current -= 1;
         fiszka.innerHTML = fiszki[current]['back'];
     }
