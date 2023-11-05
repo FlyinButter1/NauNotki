@@ -8,7 +8,7 @@ from src.notes.forms import censorship_validator
 class Register(FlaskForm):
     username = StringField(
         "",
-        validators=[DataRequired()],
+        validators=[DataRequired(), censorship_validator],
         render_kw={'placeholder': 'Enter username'}
     )
     
@@ -61,4 +61,4 @@ class Login(FlaskForm):
     password = PasswordField(
         "",
         validators=[DataRequired()]
-        )
+    )
