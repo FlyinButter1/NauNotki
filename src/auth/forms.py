@@ -6,29 +6,29 @@ from src.models import User
 
 class Register(FlaskForm):
     username = StringField(
-        "Username",
+        "",
         validators=[DataRequired()],
         
     )
     
     email = EmailField(
-        "Email",
+        "",
         validators=[Email(), DataRequired()]
         
         )
     
     password = PasswordField(
-        "Password",
+        "",
         validators=[DataRequired()]
         )
     
     confirm = PasswordField(
-        "Confirm Password",
+        "",
         validators=[EqualTo("password"), DataRequired()] 
     )
 
     role = RadioField(
-        "Role",
+        "Rola",
         validators=[DataRequired()],
         choices=[("uczen","Uczeń"),("nauczyciel","Nauczyciel")]
     )
@@ -51,12 +51,12 @@ class Register(FlaskForm):
 class Login(FlaskForm):
         
     username = StringField(
-        "Username",
+        "",
         validators=[DataRequired()],
         
     )
     
     password = PasswordField(
-        "Password",
+        "",
         validators=[DataRequired()]
         )

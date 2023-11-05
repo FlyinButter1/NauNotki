@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 1440px;
+    height: 1924px;
+    background-color: #1E232F;
+    height: 100%;
+    overflow-y: hidden;
+}
+.biały {
+    width: 60%;
+    height: 100%;
+    background: #FFF;
+    position:absolute;
+}
+.tło {
+    width: 50%;
+    height: 80%;
+    border: 10px solid #1E232F;
+    background: #FFF;
+    top:8%;
+    left:80%;
+    position:absolute;
+}
+.ciemnyniebieski {
+    width: 80%;
+    height: 90%;
+    top: 5%;
+    left: 10%;
+    border-radius: 34px;
+    position:relative;
+    background: #7C7FB5;
+}
+.niebieski {
+    background: #9397DA;
+    width: 85%;
+    height: 90%;
+    border-radius: 34px;
+    top: 5%;
+    left: 7.5%;
+    position:relative;
+
+}
+.loguj {
+    color: #FFF;
+    font-family: 'Lato', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    left:18%;
+    top:2%;
+    position:relative;
+}
+label[type="text" i]{
+    color:#9899A6;
+    top:10%;
+}
+input[type="text" i] {
+    position:absolute;
+    color: #000000;
+    border-radius: 30px;
+    width: 80%;
+    height: 6%;
+    font-size: 32px;
+    left: 10%;
+    top: 40%;
+    border: 0px solid #000000; 
+}
+input[type="password" i] {
+    position:absolute;
+    color: #000000;
+    border-radius: 30px;
+    width: 80%;
+    height: 6%;
+    font-size: 32px;
+    left: 10%;
+    top: 30%;
+    border: 0px solid #000000; 
+}
+input[type="submit" i] {
+    position:absolute;
+    background-color: #8E699B;
+    width: 50%;
+    height: 10%;
+    gap: 10px;
+    padding: 10px 30px;
+    border-radius: 15px;
+    left: 25%;
+    top: 80%;
+    border: 0px solid #000000; 
+}
+.zaloguj {
+    font-family: 'Lato', sans-serif;
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.oczek {
+    position:absolute;
+    top: 50%;
+    left: 20%;
+}
