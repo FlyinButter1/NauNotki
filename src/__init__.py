@@ -6,9 +6,14 @@ from flask_sqlalchemy import SQLAlchemy
 from decouple import config
 from flask_login import LoginManager
 from ctypes import CDLL
+import os
+import dotenv
 
 app = Flask(__name__)
 app.config.from_object(config("APP_SETTINGS"))
+
+if os.path.isfile(".env"):
+    dotenv.load_dotenv(".env")
 
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)
