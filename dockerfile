@@ -7,16 +7,19 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV FLASK_APP=src
 
 COPY requirements.txt .
-
-RUN python3 c_compile.py
-
-RUN \
- apk add --no-cache postgresql-libs libc6-compat && \
- apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
- python3 -m pip install -r requirements.txt --no-cache-dir
-
+COPY c_compile.py .
 COPY config.py .
 COPY /src /src
+
+RUN \
+ apk add --no-cache postgresql-libs && \
+ apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
+ python3 -m pip install -r requirements.txt --no-cache-dir && \
+ gcc -shared -o src/static/c/bmp64lib.so -fPIC src/static/c/bmp64lib.c -O3 -Wno-unused-result && \
+ apk --purge del .build-deps
+
+
+
 
 RUN mkdir /instance
 
