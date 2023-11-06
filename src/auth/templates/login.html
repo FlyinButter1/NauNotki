@@ -28,28 +28,28 @@
             <div class="loguj">Logowanie</div>
             
             <form action="" method="post">
-            {{form.username.label}}
-            {{ form.username() }}
-            {%for i in form.username.errors%}
-            <p>{{i}}</p>
-            {%endfor%}
 
+                {{form.username.label}}
+                {{ form.username() }}
+                {%for i in form.username.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
-            {{form.password.label}}
-            {{ form.password() }}
-            {%for i in form.password.errors%}
-            <p>{{i}}</p>
-            {%endfor%}
+                {{form.password.label}}
+                {{ form.password() }}
+                {%for i in form.password.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
-            <input type="submit" value="Zaloguj" class="zaloguj">
+                <input type="submit" value="Zaloguj" class="zaloguj">
 
-            {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                <p>{{ message }}</p>
-                {% endfor %}
-            {% endif %}
-            {% endwith %}
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
             </form>
         </div>
         </div>
