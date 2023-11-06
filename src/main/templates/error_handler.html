@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NauNotki</title>
+    <link rel="stylesheet" href="{{url_for('main.static', filename='css/error_handler.css')}}">
+</head>
+<body style="background-color: #ccffcc; margin: 100 100 100 100;">
+    <div class="error-handler">
+        <div style="text-align: left;">
+            <img src="https://play.pokemonshowdown.com/sprites/ani/spoink.gif" width="45%">
+        </div>
+        <div>&nbsp;</div> <!-- placeholder -->
+        <div style="text-align: right;">
+            <p class="heading">Error {{ error }}</p><br>
+            <p class="nonheading">An error has occurred: {{ content }}.</p><br>
+            <a href="/">Return to main page.</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -7,7 +7,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
     </style>
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{url_for('.static', filename='style_main.css')}}">
+    <link rel="stylesheet" href="{{url_for('main.static', filename='css/style_main.css')}}">
 </head>
 <body>
     <div class="strona-gwna-fr">
@@ -17,6 +17,7 @@
                     <div class="rejestracja-button">
                         <div class="text-wrapper">Rejestracja</div>
                     </div>
+                </div>
             </a>
         </div>
             <a href="/login">
@@ -41,6 +42,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </body>
 </html>

@@ -1,0 +1,14 @@
+.error-handler{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    align-items: center; /* Center content vertically */
+    max-width: 100%; /* Ensure the container doesn't exceed its parent's width */
+}
+.heading{
+    font-size: 32pt;
+    font-family: helvetica;
+}
+.nonheading{
+    font-size: 17pt;
+    font-family: helvetica;
+}
