@@ -93,7 +93,7 @@ def render_single_note(note_id):
     print(results)
     if len(results) == 0:
         return redirect("/notes/browse_notes")
-    return render_template("rendernote.html", note=results, author=author, note_id = note_id)
+    return render_template("rendernote.html", note=results[0], author=author, note_id = note_id)
 @notes_bp.route("/notes/edit_note/<path:note_id>", methods=["GET", "POST"])
 def edit_single_note(note_id):
     form = Edit()
