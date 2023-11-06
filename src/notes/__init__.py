@@ -65,6 +65,10 @@ def my_notes():
     output = list(run(query).fetchall())  # below: "own" field nonfunctional
     return render_template("show.html", curlink="my_notes", own=True, content=output, filtered=("AND" in query.text))
 
+@notes_bp.route("/notes", methods=["GET", "POST"])
+def browse_notes_redirect():
+    return redirect(url_for("notes.browse_notes"))
+
 @notes_bp.route("/notes/browse_notes", methods=["GET", "POST"])
 def browse_notes():
     query = notes_sql(request.args.copy(), True, False)
