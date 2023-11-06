@@ -62,7 +62,7 @@ input[type="text" i] {
     border-radius: 30px;
     width: 80%;
     height: 6%;
-    font-size: 32px;
+    font-size: 28px;
     left: 10%;
     top: 15%;
     border: 0px solid #000000; 
@@ -73,7 +73,7 @@ input[type="email" i] {
     border-radius: 30px;
     width: 80%;
     height: 6%;
-    font-size: 32px;
+    font-size: 28px;
     left: 10%;
     top: 25%;
     border: 0px solid #000000; 
@@ -106,7 +106,7 @@ input[type="submit" i] {
     width: 50%;
     height: 10%;
     gap: 10px;
-    padding: 10px 30px;
+    padding: 10px;
     border-radius: 15px;
     left: 25%;
     top: 80%;
@@ -126,7 +126,7 @@ select[id="role"]{
     border-radius: 30px;
     width: 80%;
     height: 6%;
-    font-size: 32px;
+    font-size: 25px;
     left: 10%;
     top: 55%;
     border: 0px solid #000000; 

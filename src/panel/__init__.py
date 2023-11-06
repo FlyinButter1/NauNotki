@@ -75,9 +75,5 @@ def change_type():
         return response
     abort(403)  # else
 
-@panel_bp.route("/account")
-def account():
-    abort(418)
-
 def profile_picture_existence_checker(filename):
     return os.path.exists(f'src/static/img/{filename}')
