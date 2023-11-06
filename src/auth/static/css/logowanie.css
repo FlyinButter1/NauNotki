@@ -5,6 +5,7 @@ body {
     height: 1024px;
     background-color: #1E232F;
     overflow-y: hidden;
+    font-family: 'Lato', sans-serif;
 }
 .bialy {
     width: 60%;
@@ -34,7 +35,7 @@ body {
     background: #9397DA;
     width: 85%;
     height: 90%;
-    border-radius: 34px;
+    border-radius: 34   px;
     top: 5%;
     left: 7.5%;
     position:relative;
@@ -50,11 +51,14 @@ body {
     top:2%;
     position:relative;
 }
-label[type="text" i]{
+::placeholder{
     color:#9899A6;
-    top:10%;
+    font-size:24px;
+    text-align: left;
+    border-radius: 30px;
 }
-input[type="text" i] {
+
+.test1 {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -64,8 +68,9 @@ input[type="text" i] {
     left: 10%;
     top: 30%;
     border: 0px solid #000000; 
+    text-align:center;
 }
-input[type="password" i] {
+.test2 {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -75,8 +80,15 @@ input[type="password" i] {
     left: 10%;
     top: 40%;
     border: 0px solid #000000; 
+    text-align:center;
 }
-input[type="submit" i] {
+.zaloguj {
+    font-family: 'Lato', sans-serif;
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
     position:absolute;
     background-color: #8E699B;
     width: 50%;
@@ -87,14 +99,6 @@ input[type="submit" i] {
     left: 25%;
     top: 80%;
     border: 0px solid #000000; 
-}
-.zaloguj {
-    font-family: 'Lato', sans-serif;
-    color: #FFF;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
 }
 .oczek {
     position:absolute;

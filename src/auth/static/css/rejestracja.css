@@ -52,11 +52,7 @@ body {
     top:2%;
     position:relative;
 }
-label[type="text" i]{
-    color:#9899A6;
-    top:10%;
-}
-input[type="text" i] {
+.nazwa {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -67,7 +63,7 @@ input[type="text" i] {
     top: 15%;
     border: 0px solid #000000; 
 }
-input[type="email" i] {
+.email {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -78,7 +74,7 @@ input[type="email" i] {
     top: 25%;
     border: 0px solid #000000; 
 }
-input[id="password" i] {
+.haslo {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -89,7 +85,7 @@ input[id="password" i] {
     top: 35%;
     border: 0px solid #000000; 
 }
-input[id="confirm"i] {
+.potwierdz {
     position:absolute;
     color: #000000;
     border-radius: 30px;
@@ -100,7 +96,13 @@ input[id="confirm"i] {
     top: 45%;
     border: 0px solid #000000; 
 }
-input[type="submit" i] {
+.zaloguj {
+    font-family: 'Lato', sans-serif;
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
     position:absolute;
     background-color: #8E699B;
     width: 50%;
@@ -112,15 +114,7 @@ input[type="submit" i] {
     top: 80%;
     border: 0px solid #000000; 
 }
-.zaloguj {
-    font-family: 'Lato', sans-serif;
-    color: #FFF;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-select[id="role"]{
+.rola {
     position:absolute;
     color: #000000;
     border-radius: 30px;

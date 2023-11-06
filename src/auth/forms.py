@@ -56,10 +56,12 @@ class Login(FlaskForm):
     username = StringField(
         "",
         validators=[DataRequired()],
+        render_kw={'placeholder': 'Email / Nazwa użytkownika'},
         
     )
     
     password = PasswordField(
         "",
-        validators=[DataRequired()]
+        validators=[DataRequired()],
+        render_kw={'placeholder': 'Hasło'},
     )

@@ -35,7 +35,7 @@
                     
                     <form action="" method="post">
                     {{form.email.label}}
-                    {{ form.email() }}
+                    {{ form.email(class_="email") }}
 
                     {%for i in form.email.errors %}
                     <p>{{i}}</p>
@@ -43,26 +43,26 @@
                     <br>
 
                     {{form.username.label}}
-                    {{ form.username() }}
+                    {{ form.username(class_="nazwa") }}
                     {%for i in form.username.errors%}
                     <p>{{i}}</p>
                     {%endfor%}
 
                     {{form.password.label}}
-                    {{ form.password() }}
+                    {{ form.password(class_="haslo") }}
                     {%for i in form.password.errors%}
                     <p>{{i}}</p>
                     {%endfor%}
 
                     {{form.confirm.label}}
-                    {{ form.confirm() }}
+                    {{ form.confirm(class_="potwierdz") }}
                     {%for i in form.confirm.errors%}
                     <p>{{i}}</p>
                     {%endfor%}
                     <br>
 
                     {{form.role.label}}
-                    {{ form.role() }}
+                    {{ form.role(class_="rola") }}
                     {%for i in form.role.errors%}
                     <p>{{i}}</p>
                     {%endfor%}
