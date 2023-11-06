@@ -60,7 +60,7 @@ def register():
         received_data = db.get_engine().connect().execute(
             text(f"SELECT id FROM user WHERE username = \'{form.username.data}\'")).fetchall()[0][0]
         generate_named_pfp(received_data, form.username.data)
-        return login()
+        return redirect(url_for("auth.login"))
 
     return render_template("register.html", form=form)
 
@@ -73,7 +73,7 @@ def login():
         if user is not None:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
-                return main()
+                return redirect(url_for("notes.my_notes"))
         flash("Nieporawny login i/lub hasło")
 
     return render_template("login.html", form=form)
