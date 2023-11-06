@@ -6,6 +6,8 @@ ENV DATABASE_URL=sqlite:///database.db
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV FLASK_APP=src
 
+RUN apk add build-base
+
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
