@@ -1,4 +1,4 @@
-FROM python:3.12-alpine3.17
+FROM python:3.11.6-alpine3.17
 
 ENV SECRET_KEY=fdkjshfhjsdfdskfdsfdcbsjdkfdsdf
 ENV APP_SETTINGS=config.TestingConfig
