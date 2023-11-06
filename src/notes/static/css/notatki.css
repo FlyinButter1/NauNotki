@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 1440px;
+    height: 1024px;
+    background: #21252F;
+    font-family: 'Lato', sans-serif;
+}
+.górne {
+    position:absolute;
+    width: 100%;
+    height: 9.375%;
+    flex-shrink: 0;
+    background: #0A1221;
+}
+input[id="text_input" i] {
+    position:absolute;
+    height:30%;
+    left: 85%;
+    top: 120%;
+    border-radius: 90px;
+    font-size: 20px;
+    background: #0A1221;
+    border: 0px solid #000000; 
+    color: #FFF;
+    text-align: center;
+}
+::placeholder {
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    vertical-align: center;
+}
+.linia {
+    position:absolute;
+    width: 100%;
+    height: 6px;
+    background: #0A1221;
+    top: 170%;
+}

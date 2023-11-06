@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('notes.static',filename='css/notatki.css') }}">
 </head>
 <body>
+    <div class="górne">
+        <div class="linia"> </div>
     <p style="text-align: center;">
         Twoje notatki.
     </p>
@@ -14,10 +17,10 @@
     </p>
     {% endif %}
     <ul>
-        <div style="list-style-type: none;"> <!-- ignore any IDE warnings about these elements, they work -->
+        <div class="wyszukiwanie" style="list-style-type: none;"> <!-- ignore any IDE warnings about these elements, they work -->
             <li><form action="/notes/{{ curlink }}" method="GET">
                 <label for="text_input">Wyszukaj:</label>
-                <input type="text" id="text_input" name="user_text" placeholder="Type your text here">
+                <input type="text" id="text_input" name="user_text" placeholder="Wyszukaj">
                 <input type="submit" value="Submit">
             </form></li><br>
             {% if content|length == 0 %}
@@ -37,5 +40,6 @@
             </li>
         {% endfor %}
     </ul>
+</div>
 </body>
 </html>
