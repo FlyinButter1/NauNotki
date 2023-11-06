@@ -68,17 +68,3 @@ class Flashcards(db.Model):
         self.front = front
         self.back = back
         self.box = box
-
-    
-class Tests(db.Model):
-
-    __tablename__ = "test"
- 
-    id = db.Column(db.Integer, primary_key=True)
-    note_id = db.Column(db.Integer, db.ForeignKey('note.id'))
-    content =  db.Column(db.Text, nullable = False)
-
-    def __init__(self, note_id, content, box = 0):
-        self.note_id = note_id
-        self.content = content
-        
