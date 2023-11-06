@@ -99,7 +99,7 @@ def edit_single_note(note_id):
         abort(403)
     else:
         userid = check_if_exists[0][0]
-        if userid != current_user.id:
+        if userid != int(note_id):
             abort(403)
     if form.validate_on_submit():
         connection = db.get_engine().connect()
