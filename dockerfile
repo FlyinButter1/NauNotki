@@ -7,6 +7,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV FLASK_APP=src
 
 COPY requirements.txt .
+
+RUN python3 c_compile.py
+
 RUN \
  apk add --no-cache postgresql-libs libc6-compat && \
  apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
