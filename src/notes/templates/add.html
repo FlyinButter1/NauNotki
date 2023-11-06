@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dodaj notkę</title>
-    <link rel="stylesheet" href="{{url_for('.static', filename='adding_notes.css')}}">
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/adding_notes.css')}}">
 </head>
 <body>
 <p class="tytuł"> Stwórz notkę! </p>
@@ -20,7 +20,6 @@
 
                 <div class="przerwa"></div>
 
-
                 {{form.grade.label}}
                 {{ form.grade(class="klasa") }}
                 {%for i in form.grade.errors%}
@@ -29,13 +28,19 @@
 
                 <div class="przerwa"></div>
 
-
                 {{form.school_type.label}}
                 {{ form.school_type(class="rodzaj_szkoły") }}
                 {%for i in form.school_type.errors%}
                 <p>{{i}}</p>
                 {%endfor%}
 
+                <div class="przerwa"></div>
+
+                {{form.privacy.label}}
+                {{ form.privacy(class="rodzaj_szkoły") }}
+                {%for i in form.privacy.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
                 <div class="przerwa"></div>
 
@@ -51,7 +56,7 @@
                 <input type="submit" value="wyślij">
             </div>
         </div>
+    </form>
 </div>
-</form>
 </body>
 </html>

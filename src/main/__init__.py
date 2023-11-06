@@ -1,9 +1,10 @@
 import werkzeug
 from flask_login import current_user
-from flask import render_template, Blueprint, request, redirect, url_for, abort
-from sqlalchemy import text
-import re
-from src import db, app
+from flask import render_template, Blueprint, abort
+
+from werkzeug.exceptions import HTTPException
+
+from src import app
 
 main_bp = Blueprint('main', __name__, template_folder='templates', static_folder="static", static_url_path='/main-static')
 @main_bp.route("/")
@@ -46,6 +47,6 @@ def error_500(e):
     return render_template("error_handler.html", error=500, content=
     "the error is on the server side. Refer to our GitHub issues page.")
 
-@app.errorhandler(Exception)
+@app.errorhandler(HTTPException)
 def generic_error(e):
     return render_template("error_handler.html", error=e.code, content=e.description)

@@ -1,8 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, PasswordField, RadioField
-from wtforms.validators import DataRequired, Email, EqualTo, InputRequired, ValidationError
-from src.models import User
-from flask import url_for
+from wtforms import StringField, RadioField
+from wtforms.validators import DataRequired
 from wtforms import ValidationError
 import re
 
@@ -54,10 +52,6 @@ class Add(FlaskForm):
         "Temat",
         validators=[DataRequired(), censorship_validator]
     )
-    _content = StringField(  # temporarily removed
-        "Content",
-        validators=[DataRequired(), censorship_validator]
-    )
     privacy = RadioField(
         "Privacy",
         validators=[DataRequired()],
@@ -66,3 +60,4 @@ class Add(FlaskForm):
             ('0', 'public')
         ]
     )
+
