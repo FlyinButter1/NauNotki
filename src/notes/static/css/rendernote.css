@@ -1,0 +1,77 @@
+body {
+    background-color: #21252F;
+    font-family: "Lato", Helvetica;
+    color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+}
+
+.tekst {
+    position: flex;
+    justify-content: center;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.content {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 20px;
+}
+
+.zmien_button {
+    background-color: #C5B5DE;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 30px;
+    font-family: "Lato", Helvetica;
+    color: #21252F;
+}
+
+.fiszki_button {
+    background-color: #C5B5DE;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 30px;
+    width: 255px;
+    font-family: "Lato", Helvetica;
+    color: #21252F;
+}
+
+.zmien_button:hover {
+    background-color: #21252F;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 30px;
+    font-family: "Lato", Helvetica;
+    color: #C5B5DE;
+    border-color: #C5B5DE;
+}
+
+.fiszki_button:hover {
+    background-color: #21252F;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 30px;
+    width: 255px;
+    font-family: "Lato", Helvetica;
+    color: #C5B5DE;
+    border-color: #C5B5DE;
+}
+
+.naglowek {
+    margin: 1rem;
+    text-align: center;
+    background-color: #0A1221;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.element {
+    display: inline-block;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    font-size: 17px;
+}
