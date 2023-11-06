@@ -1,17 +1,25 @@
+body{
+    background: linear-gradient(90deg, #aaf0d1, #99d9d3);
+    margin: 7% 10% 7% 10%;
+}
 .error-handler{
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
-    align-items: center; /* Center content vertically */
-    max-width: 100%; /* Ensure the container doesn't exceed its parent's width */
+    align-items: center;
+    max-width: 100%;
+    font-family: helvetica;
 }
 .heading{
     font-size: 32pt;
-    font-family: helvetica;
+    font-family: "Comic Sans MS", cursive;
 }
 .nonheading{
     font-size: 17pt;
-    font-family: helvetica;
 }
 a{
-    color: purple; /* not british enough */
+   text-decoration: none;
+   color: inherit; /* not british enough */
+}
+.a-wrapper{
+    color: #ff3333; /* not british enough */
 }
