@@ -75,7 +75,7 @@ def change_type():
         return response
     abort(403)  # else
 
-@panel_bp.route("/account")
+@panel_bp.route("/coffee")
 def account():
     abort(418)
 

@@ -22,6 +22,11 @@ def censorship_validator(form, field):
     if any([re.match(i, field.data) for i in censorship_list]):
         raise ValidationError("Field must not contain offensive terminology.")
 
+class Edit(FlaskForm):
+    content = StringField(
+        "Content",
+        validators=[DataRequired(), censorship_validator]
+    )
 
 class Add(FlaskForm):
     subject = StringField(
@@ -49,7 +54,7 @@ class Add(FlaskForm):
         "Chapter",
         validators=[DataRequired(), censorship_validator]
     )
-    content = StringField(
+    _content = StringField(  # temporarily removed
         "Content",
         validators=[DataRequired(), censorship_validator]
     )

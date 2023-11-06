@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, url_for, request, redirect
+from flask import render_template, Blueprint, url_for, request, redirect, abort
 from flask_login import current_user
 from sqlalchemy import text, TextClause
 from werkzeug.datastructures import MultiDict
@@ -6,7 +6,7 @@ from random import sample
 
 from src import db
 from src.main import main
-from .forms import Add
+from .forms import Add, Edit
 from src.models import Notes
 
 notes_bp = Blueprint('notes', __name__, template_folder='templates', static_folder="static", static_url_path='/notes-static')
@@ -20,7 +20,7 @@ def add():
 
     form = Add()
     if form.validate_on_submit():
-        data = Notes(current_user.id, form.content.data, form.subject.data, form.grade.data, form.school_type.data,
+        data = Notes(current_user.id, '', form.subject.data, form.grade.data, form.school_type.data,
                      form.chapter.data, form.privacy.data)
         db.session.add(data)
         db.session.commit()
@@ -31,7 +31,7 @@ def add():
 # exorbitantly shoddy code that works using the powers of allah
 def notes_sql(current_args: MultiDict, demand_only_public = False, demand_only_own = False) -> TextClause:
     component = f"WHERE owner_id = {current_user.id}" if demand_only_own else ""
-    clause = "WHERE" if not demand_only_own else "AND" # where if first clause, and if not first clause
+    clause = "WHERE" if not demand_only_own else "AND"  # where if first clause, and if not first clause
     for i in current_args:
         if i == 'class':
             component += f" {clause} grade = \'{current_args['class']}\'"
@@ -89,3 +89,21 @@ def render_single_note(note_id):
     if len(results) == 0:
         return redirect("/notes/browse_notes")
     return render_template("rendernote.html", note=results, author=author, note_id = note_id)
+@notes_bp.route("/notes/edit_note/<path:note_id>", methods=["GET", "POST"])
+def edit_single_note(note_id):
+    form = Edit()
+    check_if_exists = run(text(f"SELECT * FROM note WHERE id = {note_id}")).fetchall()
+    if len(check_if_exists) != 1:
+        abort(404)
+    if not current_user.is_authenticated:
+        abort(403)
+    else:
+        userid = check_if_exists[0][0]
+        if userid != current_user.id:
+            abort(403)
+    if form.validate_on_submit():
+        connection = db.get_engine().connect()
+        connection.execute(text(f"UPDATE note SET content = \'{form.content.data}\' WHERE id = {note_id}"))
+        connection.commit()
+        return redirect(f"/notes/render_note/{note_id}")
+    return render_template("edit.html", form=form)
