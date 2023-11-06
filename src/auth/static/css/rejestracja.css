@@ -113,6 +113,14 @@ body {
     left: 25%;
     top: 80%;
     border: 0px solid #000000; 
+    transition: all 0.1s ease-out;
+}
+.zaloguj:hover{
+    border-radius: 15px;
+    border: 3px solid #3F4A89;
+    background: #1E232F;
+    color: #3F4A89;
+    transition: all 0.1s ease-in;
 }
 .rola {
     position:absolute;

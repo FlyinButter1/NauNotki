@@ -50,6 +50,7 @@ body {
     text-align: center;
     top:2%;
     position:relative;
+    transition: all 0.1s ease-out;
 }
 ::placeholder{
     color:#9899A6;
@@ -99,6 +100,13 @@ body {
     left: 25%;
     top: 80%;
     border: 0px solid #000000; 
+}
+.zaloguj:hover{
+    border-radius: 15px;
+    border: 3px solid #7C7FB5;
+    background: #1E232F;
+    color: #7C7FB5;
+    transition: all 0.1s ease-in;
 }
 .oczek {
     position:absolute;
