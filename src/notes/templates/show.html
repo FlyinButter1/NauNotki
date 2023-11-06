@@ -38,7 +38,7 @@
                     Szkoła <a href="/notes/{{ curlink }}?school={{ i[4] }}">{{ i[4] }}</a>,
                     Przedmiot <a href="/notes/{{ curlink }}?subject={{ i[2] }}">{{ i[2] }}</a>
                     {% if i[8] is defined %}, Autor <a href="/panel/{{ i[8] }}">{{ i[8] }}</a>{% endif %}
-                <a href="/notes/render_note/{{ i[0] }}"></a>
+                <a class="" href="/notes/render_note/{{ i[0] }}"></a>
             </li>
         {% endfor %}
     </ul>
