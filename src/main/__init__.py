@@ -12,11 +12,11 @@ def main() -> str:  # main page render function isolated in file to get current 
 
 # error handlers
 @app.errorhandler(404)
-def teapot_error(e):
+def error_404(e):
     return render_template("error_handler.html", error=404, content="This site does not exist")
 @app.errorhandler(403)
-def teapot_error(e):
+def error_403(e):
     return render_template("error_handler.html", error=403, content="You are not logged in or you have attempted to access files that are not yours")
 @app.errorhandler(418)
-def teapot_error(e):
+def error_418(e):
     return render_template("error_handler.html", error=418, content="I'm a teapot")
