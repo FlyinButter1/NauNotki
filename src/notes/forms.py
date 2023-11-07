@@ -25,6 +25,11 @@ def censorship_validator_string(field: str):
         return False
     return True
 
+def censorship_validator_string(field: str):
+    if any([re.match(i, field) for i in censorship_list]):
+        return False
+    return True
+
 class Add(FlaskForm):
     subject = StringField(
         "Przedmiot",
