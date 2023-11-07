@@ -33,15 +33,15 @@ def notes_sql(current_args: MultiDict, demand_only_public = False, demand_only_o
     component = f"WHERE owner_id = {current_user.id}" if demand_only_own else ""
     clause = "WHERE" if not demand_only_own else "AND"  # where if first clause, and if not first clause
     for i in current_args:
-        if i == 'class':
+        if i == 'class' and current_args['class'] != "":
             component += f" {clause} grade = \'{current_args['class']}\'"
             clause = "AND"
             break
-        if i == 'subject':
+        if i == 'subject' and current_args['subject'] != "":
             component += f" {clause} subject = \'{current_args['subject']}\'"
             clause = "AND"
             break
-        if i == 'school':
+        if i == 'school' and current_args['school'] != "":
             component += f" {clause} school_type = \'{current_args['school']}\'"
             clause = "AND"
             break

@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NauNotki</title>
-    <link rel="stylesheet" href="{{ url_for('.static',filename='css/panel.css') }}">  <!--tutaj!!!!!!!!-->
+    <link rel="stylesheet" href="{{ url_for('.static',filename='css/panel.css') }}">
+
+    <!--tutaj!!!!!!!!-->
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
     </style>
 </head>
 <body>
 <div class="gorne">
-    <p class="logo">NauNotki</p>
+    <a href="/" class="remove-decorations"><p class="logo">NauNotki</p></a>
     <a href="notes/my_notes">
         <svg class = "svg" xmlns="http://www.w3.org/2000/svg" width="43" height="53" viewBox="0 0 43 53" fill="none">
             <path d="M3 46.3215V8.00007C3 5.08085 5.36649 2.71436 8.28571 2.71436H38.4143C39.2901 2.71436 40 3.42431 40 4.30007V50.2858" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round"/>
@@ -32,7 +34,7 @@
         {{ form.oldpassword() }}
         {%for i in form.oldpassword.errors%}
         <p>{{i}}</p>
-        {%endfor%}
+        {%endfor%}<br>
 
 
         {{form.newpassword.label}}
