@@ -45,15 +45,15 @@
     <ul class="lista">
         {% for i in content %}
             <li class = "notka"> <!-- delete button nonfunctional -->
-                <h3 class="tytul">{{ i[5] }}{% if own %} <a href="/notes/{{ curlink }}?delete={{ i[0] }}">
+                <h3 class="tytul">{{ i[5] }}<a href="/notes/{{ curlink }}?delete={{ i[0] }}">
                     <svg class = "smietnik" xmlns="http://www.w3.org/2000/svg" width="46" height="51" viewBox="0 0 46 51" fill="none">
                     <path d="M2.85742 10.7959H42.8574M32.8574 10.7959L32.1809 8.76607C31.5252 6.79902 31.1972 5.8155 30.5892 5.08835C30.0522 4.44622 29.3627 3.9492 28.5837 3.64285C27.7014 3.2959 26.6649 3.2959 24.5914 3.2959H21.1234C19.0499 3.2959 18.0134 3.2959 17.1312 3.64285C16.3522 3.9492 15.6626 4.44622 15.1256 5.08835C14.5175 5.8155 14.1897 6.79902 13.534 8.76607L12.8574 10.7959M37.8574 10.7959V36.2959C37.8574 40.4964 37.8574 42.5964 37.0399 44.2009C36.3209 45.6121 35.1737 46.7594 33.7624 47.4784C32.1579 48.2959 30.0579 48.2959 25.8574 48.2959H19.8574C15.657 48.2959 13.5568 48.2959 11.9525 47.4784C10.5413 46.7594 9.39392 45.6121 8.67487 44.2009C7.85742 42.5964 7.85742 40.4964 7.85742 36.2959V10.7959M27.8574 20.7959V38.2959M17.8574 20.7959V38.2959" stroke="#C1B2D9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                </a>{% endif %}</h3>
+                </a></h3>
                 <p class="tagi_notatki" >Klasa <a href="/notes/{{ curlink }}?class={{ i[3] }}">{{ i[3] }}</a>,
                     Szkoła <a href="/notes/{{ curlink }}?school={{ i[4] }}">{{ i[4] }}</a>,
                     Przedmiot <a href="/notes/{{ curlink }}?subject={{ i[2] }}">{{ i[2] }}</a>
-                    {% if i[8] is defined %}, Autor <a href="/panel/{{ i[8] }}">{{ i[8] }}</a>{% endif %}
+                    , Autor <a href="/panel{% if not own %}/{{ i[9] }}{% endif %}">{% if not own %}{{ i[9] }}{% else %}{{ username }}{% endif %}</a>
                 <a class="klik" href="/notes/render_note/{{ i[0] }}"></a>
             </li>
         {% endfor %}
