@@ -96,6 +96,7 @@ button{
     border-radius: 15px;
     border: 0px solid #000000; 
     position:relative;
+    transition: all 0.1s ease-out;
 }
 button:hover{
     border-radius: 15px;
