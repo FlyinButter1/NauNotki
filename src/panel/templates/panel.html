@@ -5,18 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NauNotki</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='panel.css') }}">
-    <style>        
+    <link rel="stylesheet" href="{{ url_for('.static',filename='css/panel.css') }}">  <!--tutaj!!!!!!!!-->
+    <style>
     @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
     </style>
 </head>
 <body>
-    <div class="gorne">
-        <p class="logo">NauNotki</p>
-    </div>
+<div class="gorne">
+    <p class="logo">NauNotki</p>
+    <a href="notes/my_notes">
+        <svg class = "svg" xmlns="http://www.w3.org/2000/svg" width="43" height="53" viewBox="0 0 43 53" fill="none">
+            <path d="M3 46.3215V8.00007C3 5.08085 5.36649 2.71436 8.28571 2.71436H38.4143C39.2901 2.71436 40 3.42431 40 4.30007V50.2858" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M13.5713 13.2856H29.4284" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M6.96387 34.4282H39.9996" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M6.96387 42.3569H39.9996" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M6.96387 50.2856H39.9996" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M6.96429 42.3568C4.32143 42.3568 3 40.5819 3 38.3925C3 36.2032 4.32143 34.4282 6.96429 34.4282" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.96429 50.2855C4.32143 50.2855 3 48.5106 3 46.3212C3 44.1319 4.32143 42.3569 6.96429 42.3569" stroke="#C5B5DE" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg></a>
+</div>
 
 <div class="prostokat">
-    <h1>{{username}}</h1>
+    <h1 class="nazwa">{{username}}</h1>
     <form action="" method="post">
         {{form.oldpassword.label}}
         {{ form.oldpassword() }}
@@ -24,7 +34,6 @@
         <p>{{i}}</p>
         {%endfor%}
 
-        <div class="przerwa"></div>
 
         {{form.newpassword.label}}
         {{ form.newpassword() }}
@@ -32,36 +41,33 @@
         <p>{{i}}</p>
         {%endfor%}
 
-        <div class="przerwa"></div>
 
         {{form.confirm.label}}
         {{ form.confirm() }}
         {%for i in form.confirm.errors%}
         <p>{{i}}</p>
         {%endfor%}
-
-        <div class="przerwa"></div>
-        <input type="submit" value="wyślij">
+        <input class="zmiana" type="submit" value="Zmień">
 
         {% with messages = get_flashed_messages() %}
         {% if messages %}
-            {% for message in messages %}
-            <p>{{ message }}</p>
-            {% endfor %}
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
         {% endif %}
         {% endwith %}
     </form>
+    <br><br><br>
     <div>
-        <div>   <!--Moja szczera reakcja na to że mamy dwa różne typy form w jednym pliku-->
-            Email: {{ email }} <button onclick="scr1()">Change email</button><br>
-            Account type: {{ account_type }} <button onclick="scr2('{{ account_type }}')">Change type</button><br>
-            My notes: <a href="notes/my_notes">check</a><br>
+        <div class="tekst">   <!--Moja szczera reakcja na to że mamy dwa różne typy form w jednym pliku-->
+            <div>Email: {{ email }}</div>  <div><button onclick="scr1()">Zmień email</button></div>
+            <div>Account type: {{ account_type }} </div><div><button onclick="scr2('{{ account_type }}')">Zmień rolę</button></div>
         </div>
         <div>
             {% if pfp_exists %}
             <p><img src="/pfp/{{ pfp }}" id="pfp" height="128" onclick="scr4()"></p>
             {% else %}
-            <p><button onclick="scr3()">Generate a profile picture</button></p>
+            <p><button class="pfp" onclick="scr3()">Wygeneruj nową ikonę</button></p>
             {% endif %}
         </div>
     </div>

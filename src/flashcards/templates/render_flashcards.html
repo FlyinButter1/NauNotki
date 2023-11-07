@@ -6,22 +6,17 @@
     <title>Document</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{url_for('.static', filename='render.js')}}"></script>
-    <style>
-        #fiszka{
-            width: 500px;
-            height: 500px;
-            border: 2px black solid;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+    <link rel="stylesheet" href="{{url_for('.static', filename='generowanie.css')}}">
 </head>
 <body onload="main()">
     <h1>Fiszki</h1>
-    <div id="fiszka" onclick="flip()"></div>
+    <div class="form">
+    <div class="fiszka_form" onclick="flip()">
+        <div id="fiszka"></div>
+    </div>
+    <br>
     <button id="lewo" onclick="lewo()">&#60;</button>
     <button id="prawo" onclick="prawo()">&#62;</button>
+    </div>
 </body>
 </html>
