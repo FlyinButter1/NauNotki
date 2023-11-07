@@ -140,3 +140,4 @@ void generate(const char* inputname, const char* outputname, const char* usernam
     printf("Generated profile picture for user %s at %s, factor %d, hash %u, size %d x %d. Took %.10g seconds.\n",
     username, outputname, FACTOR, randomness_hash, height, width, (((double)(end_time - start_time)) / CLOCKS_PER_SEC));
 }
+// pafy
