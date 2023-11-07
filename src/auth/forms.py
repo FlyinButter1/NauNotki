@@ -8,7 +8,7 @@ from src.notes.forms import censorship_validator
 class Register(FlaskForm):
     username = StringField(
         "",
-        validators=[DataRequired(), censorship_validator],
+        validators=[DataRequired()],
         render_kw={'placeholder': 'Nazwa użytkownika'}
     )
     
