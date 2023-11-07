@@ -86,7 +86,6 @@ def browse_notes():
     output = [list(i)+
         [run(text(f"SELECT username FROM user WHERE id = {i[1]}")).fetchall()[0][0]]
         for i in db.get_engine().connect().execute(query).fetchall()]  # below: "own" field nonfunctional
-    print(output)
     return render_template("show.html",
                            curlink="browse_notes", own=False, content=sample(output, len(output)),
                            filtered=("AND" in query.text))
@@ -103,7 +102,6 @@ def render_single_note(note_id):
         abort(404)
     query2 = f"SELECT username FROM user WHERE id = {results[0][1]}"
     author = run(text(query2)).fetchall()[0][0]
-    print(results)
     if len(results) == 0:
         return redirect("/notes/browse_notes")
     return render_template("rendernote.html", note=results[0], author=author, note_id = note_id)
