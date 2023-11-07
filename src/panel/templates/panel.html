@@ -5,19 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .przerwa {
-            padding: 5px;
-        }
-        p{
-            margin: 2px;
-            color: red;
-        }
-        .login-bar { /* temporary solution to keep it not looking like absolute shit */
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('panel.static',filename='css/panel.css') }}">
 </head>
 <body>
     <h1>{{username}}</h1>
