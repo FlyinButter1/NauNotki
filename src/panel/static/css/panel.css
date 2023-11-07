@@ -76,7 +76,7 @@ input{
 .zmiana {
     margin-top:6%;
     float:right;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -86,7 +86,7 @@ input{
     margin-right:-42%;
 }
 button{
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
