@@ -1,11 +1,11 @@
-from flask import render_template, Blueprint, url_for, request, redirect, abort
+from flask import render_template, Blueprint, url_for, request, redirect, abort, make_response
 from flask_login import current_user
 from sqlalchemy import text, TextClause
 from werkzeug.datastructures import MultiDict
 from random import sample
 
 from src import db
-from .forms import Add
+from .forms import Add, censorship_validator_string
 from src.models import Notes
 
 notes_bp = Blueprint(
@@ -103,15 +103,22 @@ def edit_single_note(note_id):
 @notes_bp.route("/notes/run_edit/<path:note_id>", methods=["POST"])
 def run_edit_note(note_id):
     data = request.form.get('content')
-    check_if_exists = run(text(f"SELECT * FROM note WHERE id = {note_id}")).fetchall()
-    if len(check_if_exists) != 1:
-        abort(404)
     if not current_user.is_authenticated:
         abort(403)
+    query1 = f"SELECT * FROM note WHERE id = {note_id} " \
+             f"{f'AND (owner_id = {current_user.id} OR private IS NULL OR private = 0)' if current_user.id != '' else ''}"
+    check_if_exists = run(text(query1)).fetchall()
+    if not censorship_validator_string(data):
+        abort(418)  # temporary
+    if len(check_if_exists) != 1:
+        abort(404)
     else:
         userid = check_if_exists[0][0]
         if userid != int(note_id):
             abort(403)
+        if current_user.id != check_if_exists[0][1]:
+            abort(403)
     connection = db.get_engine().connect()
     connection.execute(text(f"UPDATE note SET content = \'{data}\' WHERE id = {note_id}"))
     connection.commit()
+    return make_response('', 201)

@@ -11,23 +11,16 @@ function makeGetRequest(path) {
             } 
         ); 
     }); 
-} 
-
-
+}
 let fiszki;
 let fiszka; 
 let current;
 
 async function main(){
-
     fiszka = document.getElementById("fiszka");
-
     fiszki = await makeGetRequest(location.origin+"/flashcards/api/get"+location.search);
-    
     current = 0;
-    
     fiszka.innerHTML = fiszki[0]['back'];
-
     return fiszki;
 }
 

@@ -107,15 +107,15 @@ void generate(const char* inputname, const char* outputname, const char* usernam
     fread(&bi, sizeof(BITMAPINFOHEADER), 1, inptr);
     //printf("%08X\n", bi.biHeight); debug
     //printf("%08X\n", bi.biWidth); debug
-	int height = bi.biHeight, width = bi.biWidth, i, j, k;
-	int padding = (4 - (width * sizeof(RGBTRIPLE)) % 4) % 4;
+	int height = bi.biHeight, width = bi.biWidth;
+	int padding = (4 - (width * sizeof(RGBTRIPLE)) % 4) % 4; // one byte of padding after each line is necessary
     //printf("%d\n%d\n", height, width); debug
-    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
-    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
+    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr); // writes the template headers into a new file
+    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr); // mandatory for the file to even open at all
     fputc(0x00, outptr); // two bytes of nothing loaded into the files, deleting this breaks the program, do not delete
     fputc(0x00, outptr);
     RGBTRIPLE* cols = malloc(sizeof(RGBTRIPLE)*(height*width/(FACTOR*FACTOR)));
-    for(i = 0; i < (height*width/(FACTOR*FACTOR)); i++){
+    for(int i = 0; i < (height*width/(FACTOR*FACTOR)); i++){
         RGBTRIPLE col = construct(rand() % 256, rand() % 256, rand() % 256);
         if(brightness(col) <= 35 || brightness(col) >= 215 || rev_blandness(col) <= 25){
             i--; // blocking too dark, too bright and too gray colours for maximising colourfulness
@@ -123,14 +123,14 @@ void generate(const char* inputname, const char* outputname, const char* usernam
         }
         cols[i] = col;
 	}
-    for(i = 0; i < height; i++){
+    for(int l = 0; l < height; l++){
         // write row to outfile
-        for(j = 0; j < width; j++){
-        	RGBTRIPLE col = (cols[(j/FACTOR)*FACTOR+(i/FACTOR)]);
+        for(int j = 0; j < width; j++){
+        	RGBTRIPLE col = (cols[(j/FACTOR)*FACTOR+(l/FACTOR)]);
 	        putcolour(outptr, col);
 		}
         // write padding at end of row - necessary due to specifics of the BMP format
-        for(k = 0; k < padding; k++){
+        for(int k = 0; k < padding; k++){
             fputc(0x00, outptr);
         }
     }
