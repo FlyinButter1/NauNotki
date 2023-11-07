@@ -56,6 +56,19 @@ def notes_sql(current_args: MultiDict, demand_only_public = False, demand_only_o
 
 @notes_bp.route("/notes/my_notes", methods=["GET", "POST"])
 def my_notes():
+    args = request.args.copy()  # public static void main(String[] args)
+    if 'delete' in args:
+        if not current_user.is_authenticated:
+            abort(403)
+        owner_id = run(text(f"SELECT owner_id FROM note WHERE id = {args['delete']}")).fetchall()
+        if len(owner_id) != 0:
+            owner_id = owner_id[0][0]
+            if owner_id != current_user.id:
+                abort(403)
+            connection = db.get_engine().connect()
+            connection.execute(text(f"DELETE FROM note WHERE id = {args['delete']}"))
+            connection.commit()
+            return redirect("/notes/my_notes")
     if not current_user.is_authenticated:
         return redirect(url_for("main.main"))
     query = notes_sql(request.args.copy(), False, True)
