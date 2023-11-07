@@ -21,9 +21,17 @@ a{
 .ustawienia {
     position:absolute;
     float:right;
-    width:50%;
+    width:5%;
     height:50%;
-    left:73%;
+    left:95%;
+    top:25%;
+}
+.ustawienia2 {
+    position:absolute;
+    float:right;
+    width:5%;
+    height:50%;
+    left:91%;
     top:25%;
 }
 .strona{
