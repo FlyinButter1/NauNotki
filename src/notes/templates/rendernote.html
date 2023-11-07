@@ -14,11 +14,16 @@
             Dział: {{ note[5] }}
         </div> 
         <div class="element">
-            klasa: {{ note[3] }}
+            Klasa: {{ note[3] }}
         </div>
         <div class="element">
-            szkoła: {{ note[4] }}
+            Szkoła: {{ note[4] }}
         </div>
+        <a href="/flashcards?note={{note_id}}">
+            <button class="fiszki_button">
+                Fiszki
+            </button>
+        </a>
     </div>
     {% if note[6] != "" %}
     <div class="tekst">
@@ -39,11 +44,5 @@
         </a><br>
     {% endif %}
     <br>
-    <a href="/flashcards?note={{note_id}}">
-        <button class="fiszki_button">
-            Fiszki
-        </button>
-    </a>
-    
 </body>
 </html>

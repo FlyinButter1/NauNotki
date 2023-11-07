@@ -23,7 +23,7 @@ def generate():
     
 
     response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
+    model="gpt-4",
     messages=[
         {
         "role": "system",
@@ -35,7 +35,7 @@ def generate():
         }
     ],
     temperature=1,
-    max_tokens=1000,
+    max_tokens=3000,
     top_p=1,
     frequency_penalty=0,
     presence_penalty=0

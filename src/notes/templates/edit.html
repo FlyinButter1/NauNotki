@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/edit.css')}}">
 </head>
 <body>
     <form method="post">
@@ -13,5 +14,14 @@
         {% endfor %}
         <input type="submit" value="wyślij">
     </form>
+    <div class="markdown-editor">
+        <div class="markdown-input">
+            <textarea id="markdown-input" placeholder="Tu wpisz swoją notatkę"></textarea>
+        </div>
+        <div class="markdown-preview">
+            <div id="markdown-preview"></div>
+        </div>
+    </div>
+    <script src="markdown-editor.js"></script>
 </body>
 </html>

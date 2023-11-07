@@ -1,0 +1,28 @@
+body {
+    background-color: #21252F;
+    font-family: "Lato", Helvetica;
+    color: #ffffff;
+}
+
+.markdown-editor {
+    display: flex;
+    flex-direction: row;
+}
+
+.markdown-input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.markdown-preview {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#markdown-preview {
+    overflow-y: auto;
+    height: 100%;
+}

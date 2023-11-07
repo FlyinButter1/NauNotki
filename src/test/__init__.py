@@ -19,18 +19,18 @@ def test_api():
         return ""
 
     response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
+    model="gpt-4",
     messages=[
         {
         "role": "system",
-        "content": "Jesteś nauczycielem, który tworzy test na podstawie notatek. test podaj jako json według wzoru '[{\"pytanie\":\"content\", \"a\":\"content\", \"b\":\"content\", \"c\":\"content\", \"d\":\"content\", \"poprawna\":\"content\"}] , ...]'. Podaj od 4 do 8 pytań.\n"        },
+        "content": "Jesteś nauczycielem, który tworzy test na podstawie notatek. test podaj jako json według wzoru '[{\"pytanie\":\"content\", \"a\":\"content\", \"b\":\"content\", \"c\":\"content\", \"d\":\"content\", \"poprawna\":\"content\"} , ...]'. Podaj od 4 do 8 pytań.\n"        },
         {
         "role": "user",
         "content": f"{note.content}"
         }
     ],
     temperature=1,
-    max_tokens=2000,
+    max_tokens=3000,
     top_p=1,
     frequency_penalty=0.2,
     presence_penalty=0
