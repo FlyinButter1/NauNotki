@@ -6,10 +6,10 @@ body {
     background: #21252F;
     font-family: 'Lato', sans-serif;
     color: #C5B5DE;
-    max-width: 100%;
-    overflow-x: hidden;
+    text-align:center;
+    overflow: scroll;
 }
-.gorne {
+.gora {
     top:0;
     position:relative;
     width: 100%;
@@ -18,9 +18,6 @@ body {
     margin-top: -1%;
     padding-top:0.5%;
     padding-bottom:0.001%;
-}
-a{
-    color: #C1B2D9
 }
 .logo {
     font-family: "Kodchasan", Helvetica;
@@ -34,56 +31,43 @@ a{
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-align:left;
 }
-.prostokat{    
+.blok {
     background: linear-gradient(180deg, rgba(10, 18, 33, 0.70) 0%, rgba(21, 34, 58, 0.00) 100%);
     box-shadow: 0px 4px 38px 2px #0A1221 inset;
-    width:30%;
-    height:80%;
-    margin-left: 5%;
-    margin-top: 2.5%;
+    width: 80%;
+    height: 40%;
+    top: 20%;
+    left: 10%;
+    margin-top: 5%;
+    position: relative;
+    text-align: justify;
+    padding: 0.5%;
     border-radius:30px;
-    padding:1%;
-    padding-bottom: 3%;
 }
-.nazwa{
-    margin-left:25%;
-    margin-top:-1%;
-}
-label{
-    font-size: 20px;
-    margin-left:5%;
-    padding-top:1%;
-    padding-bottom:1%;
-    line-height:150%;
-}
-input{
-    color: #000000;
-    border-radius: 30px;
-    width: 40%;
-    font-size: 20px;
-    border: 0px solid #000000; 
+h1 {
     text-align:center;
-    float: right;
 }
-.tekst{
-    margin-left:5%;
-    font-size: 20px;
-    display:grid;
-    grid-template-columns:calc(66% + 2vw) 34%;
-    grid-column-gap: 2vw;
+p {
+    text-align:center;
 }
-.zmiana {
-    margin-top:6%;
-    float:right;
-    font-size: 12px;
+.pytanie {
+    color: #8298CF;
+    font-size: 32px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    padding:1%;
-    background-color: #8E699B;
-    width: 20%;
-    margin-right:-42%;
+}
+.odp {
+    text-align:center;
+}
+.poprawna {
+    color: #8298CF;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 button{
     font-size: 12px;
@@ -91,11 +75,8 @@ button{
     font-weight: 700;
     line-height: normal;
     background-color: #8E699B;
-    width: 63%;
-    padding:2%;
     border-radius: 15px;
     border: 0px solid #000000; 
-    position:relative;
     transition: all 0.1s ease-out;
 }
 button:hover{
@@ -103,19 +84,4 @@ button:hover{
     background: #0A1221;
     color: #7C7FB5;
     transition: all 0.1s ease-in;
-}
-.pfp{
-    float: right;
-    width:50%;
-}
-svg{
-    position:absolute;
-    float:right;
-    width:40%;
-    height:40%;
-    left:78%;
-    top:25%;
-}
-.remove-decorations{
-    text-decoration: none;
 }

@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NauNotki</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{{url_for('.static', filename='test.js')}}"></script>
+    <link rel="stylesheet" href="{{ url_for('.static',filename='css/test.css') }}"> <!--to też do naprawy-->
+    <style>        
+        @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
+    </style>
 </head>
 <body onload="main()">
-    <div id="test"></div>
+    <div class="gora">
+        <p class="logo">NauNotki</p>
+    </div>
+    <div class="blok" id="test"></div>
     <div id="odpowiedzi"></div>
 </body>
 </html>

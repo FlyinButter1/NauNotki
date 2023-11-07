@@ -13,16 +13,16 @@ def notEqual(second_field, message):
 
 class ChangePassword(FlaskForm):
     oldpassword = PasswordField(
-        "Old password",
+        "Stare hasło",
         validators=[DataRequired()]
         )
     
     newpassword = PasswordField(
-        "New password",
+        "Nowe hasło",
         validators=[DataRequired()]
         )
     
     confirm = PasswordField(
-        "Confirm new password",
-        validators=[EqualTo("newpassword"), DataRequired(), notEqual('oldpassword', message = f"New password can't be the same as the old password")] 
+        "Potwierdź nowe hasło",
+        validators=[EqualTo("newpassword"), DataRequired(), notEqual('oldpassword', message = f"Nowe hasło nie może być takie same jak stare hasło.")] 
     )

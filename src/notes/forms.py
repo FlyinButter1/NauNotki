@@ -11,14 +11,24 @@ def grade_validator(form, field):
     try:  # exception-driven development ftw
         value = int(field.data)
         if value < 0:
-            raise ValidationError("Field must be non-negative.")
+            raise ValidationError("Pole nie może być liczbą negatywną!")
     except ValueError:
-        raise ValidationError("Field must be numeric.")
+        raise ValidationError("Wprowadź liczbę.")
 
 
 def censorship_validator(form, field):
     if any([re.match(i, field.data) for i in censorship_list]):
-        raise ValidationError("Field must not contain offensive terminology.")
+        raise ValidationError("Pole nie może zawierać terminów ofensywnych.")
+
+def censorship_validator_string(field: str):
+    if any([re.match(i, field) for i in censorship_list]):
+        return False
+    return True
+
+def censorship_validator_string(field: str):
+    if any([re.match(i, field) for i in censorship_list]):
+        return False
+    return True
 
 def censorship_validator_string(field: str):
     if any([re.match(i, field) for i in censorship_list]):
@@ -52,7 +62,7 @@ class Add(FlaskForm):
         validators=[DataRequired(), censorship_validator]
     )
     privacy = RadioField(
-        "Privacy",
+        "Prywatność",
         validators=[DataRequired()],
         choices=[
             ('1', 'private'),
