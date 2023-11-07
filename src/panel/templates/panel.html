@@ -4,10 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{ url_for('panel_bp.static',filename='css/panel.css') }}">
+    <title>NauNotki</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='panel.css') }}">
+    <style>        
+    @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
+    </style>
 </head>
 <body>
+    <div class="gorne">
+        <p class="logo">NauNotki</p>
+    </div>
+
+<div class="prostokat">
     <h1>{{username}}</h1>
     <form action="" method="post">
         {{form.oldpassword.label}}
@@ -43,13 +51,13 @@
         {% endif %}
         {% endwith %}
     </form>
-    <div class="login-bar">
-        <div style="text-align: left;">
+    <div>
+        <div>   <!--Moja szczera reakcja na to że mamy dwa różne typy form w jednym pliku-->
             Email: {{ email }} <button onclick="scr1()">Change email</button><br>
             Account type: {{ account_type }} <button onclick="scr2('{{ account_type }}')">Change type</button><br>
             My notes: <a href="notes/my_notes">check</a><br>
         </div>
-        <div style="text-align: right;">
+        <div>
             {% if pfp_exists %}
             <p><img src="/pfp/{{ pfp }}" id="pfp" height="128" onclick="scr4()"></p>
             {% else %}
@@ -57,5 +65,6 @@
             {% endif %}
         </div>
     </div>
+</div>
 </body>
 </html>
