@@ -20,6 +20,10 @@
         <li><form action="/notes/{{ curlink }}" method="GET">
             <label for="text_input"></label>
             <input class="wyszukaj "type="text" id="text_input" name="user_text" placeholder="Wyszukaj">
+            <input type="number" name="class" id="class", placeholder="klasa">
+            <input type="text" name="school" id="school", placeholder="szkoła">
+            <input type="text" name="subject" id="subject", placeholder="przedmiot">
+            <input type="submit" value="Szukaj">
         </form></li><br>
         {% if content|length == 0 %}
             <li>Brak wyników.</li>
