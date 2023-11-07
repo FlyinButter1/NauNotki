@@ -27,10 +27,10 @@ async function main(){
     for (let i = 0; i < Object.keys( response ).length; i++)
     {
         document.getElementById("test").innerHTML += "<p class='pytanie'>"+response[i]["pytanie"]+"</p>";
-        document.getElementById("test").innerHTML += "<p class='odp'>"+"a. "+response[i]["a"]+"</p>";
-        document.getElementById("test").innerHTML += "<p class='odp'>"+"b. "+response[i]["b"]+"</p>";
-        document.getElementById("test").innerHTML += "<p class='odp'>"+"c. "+response[i]["c"]+"</p>";
-        document.getElementById("test").innerHTML += "<p class='odp'>"+"d. "+response[i]["d"]+"</p>";
+        document.getElementById("test").innerHTML += "<p class='odpa'>"+"a. "+response[i]["a"]+"</p>";
+        document.getElementById("test").innerHTML += "<p class='odpb'>"+"b. "+response[i]["b"]+"</p>";
+        document.getElementById("test").innerHTML += "<p class='odpc'>"+"c. "+response[i]["c"]+"</p>";
+        document.getElementById("test").innerHTML += "<p class='odpd'>"+"d. "+response[i]["d"]+"</p>";
     }
 
     document.getElementById("odpowiedzi").innerHTML = "<button onclick='pokaz_odp()'>pokaz odpowiedzi</button>";
