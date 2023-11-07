@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NauNotki</title>
-    <link rel="stylesheet" href="{{ url_for('.static',filename='css/panel.css') }}">  <!--tutaj!!!!!!!!-->
+    <link rel="stylesheet" href="{{ url_for('.static',filename='css/panel.css') }}">
+
+    <!--tutaj!!!!!!!!-->
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Kodchasan:wght@700&family=Lato&display=swap');
     </style>
@@ -32,7 +34,7 @@
         {{ form.oldpassword() }}
         {%for i in form.oldpassword.errors%}
         <p>{{i}}</p>
-        {%endfor%}
+        {%endfor%}<br>
 
 
         {{form.newpassword.label}}
