@@ -12,23 +12,24 @@ a{
 }
 .górne {
     top:0;
-    position:absolute;
+    position:relative;
     width: 100%;
-    height: 10%;
-    flex-shrink: 0;
+    height: 100%;
     background: #0A1221;
+    margin-top: -2%;
 }
 .strona{
-    font-size: 40px;
+    font-size: 250%;
     text-align: center;
-    vertical-align: middle;
-    margin-bottom: 5%
+    max-height:20%;
+    padding: 1.6%;
+    margin-bottom: 1%;
 }
-input[id="text_input" i] {
-    position:absolute;
-    height:5%;
+.wyszukaj {
+    position:relative;
+    height:10%;
+    padding:1%;
     left: 85%;
-    top: 10.75%;
     border-radius: 90px;
     font-size: 20px;
     background: #0A1221;
@@ -45,11 +46,11 @@ input[id="text_input" i] {
     line-height: normal;
 }
 .linia {
-    position:absolute;
+    position:relative;
     width: 100%;
     height: 6px;
     background: #0A1221;
-    top: 170%;
+    top: 20%;
 }
 .lista {
     list-style-type: none;

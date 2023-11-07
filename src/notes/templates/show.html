@@ -7,26 +7,26 @@
 </head>
 <body>
     <div class="górne">
-        <div class="linia"> </div>
-    <h1 class="strona">
-        Twoje notatki
-    </h1>
+        <h1 class="strona">
+            Twoje notatki
+        </h1>
     </div>
     {% if filtered %}
     <p>
         Wyniki filtrowane. <a href="/notes/{{ curlink }}">Wróć do wyników niefiltrowanych.</a>
     </p>
     {% endif %}
+    <div class="wyszukiwanie" style="list-style-type: none;"> <!-- ignore any IDE warnings about these elements, they work -->
+        <li><form action="/notes/{{ curlink }}" method="GET">
+            <label for="text_input"></label>
+            <input class="wyszukaj "type="text" id="text_input" name="user_text" placeholder="Wyszukaj">
+        </form></li><br>
+        {% if content|length == 0 %}
+            <li>Brak wyników.</li>
+        {% endif %}
+    </div>
+    <div class="linia"></div>
     <ul class="lista">
-        <div class="wyszukiwanie" style="list-style-type: none;"> <!-- ignore any IDE warnings about these elements, they work -->
-            <li><form action="/notes/{{ curlink }}" method="GET">
-                <label for="text_input"></label>
-                <input type="text" id="text_input" name="user_text" placeholder="Wyszukaj">
-            </form></li><br>
-            {% if content|length == 0 %}
-                <li>Brak wyników.</li>
-            {% endif %}
-        </div>
         {% for i in content %}
             <li class = "notka"> <!-- delete button nonfunctional -->
                 <h3 class="tytul">{{ i[5] }}{% if own %} <a href="/notes/{{ curlink }}?delete={{ i[0] }}">
