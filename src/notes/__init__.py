@@ -36,25 +36,21 @@ def notes_sql(current_args: MultiDict, demand_only_public = False, demand_only_o
         if i == 'class' and current_args['class'] != "":
             component += f" {clause} grade = \'{current_args['class']}\'"
             clause = "AND"
-            break
         if i == 'subject' and current_args['subject'] != "":
             component += f" {clause} subject = \'{current_args['subject']}\'"
             clause = "AND"
-            break
         if i == 'school' and current_args['school'] != "":
             component += f" {clause} school_type = \'{current_args['school']}\'"
             clause = "AND"
-            break
         if i == 'user_text' and current_args['user_text'] != "":
             component += f" {clause} content LIKE \'%{current_args['user_text']}%\'"
             clause = "AND"
-            break
         if i == 'teacher':
             component += f"{clause} owner_id IN (SELECT id FROM user WHERE username = \'{current_args['teacher']}\')"
             clause = "AND"
-            break
+
     if demand_only_public:
-        component += f"{clause} private IS NULL OR private != 1"
+        component += f"{clause} (private IS NULL OR private != 1)"
     return text(f"SELECT * FROM note {component}")
 
 
@@ -64,7 +60,8 @@ def my_notes():
         return redirect(url_for("main.main"))
     query = notes_sql(request.args.copy(), False, True)
     output = list(run(query).fetchall())  # below: "own" field nonfunctional
-    return render_template("show.html", curlink="my_notes", own=True, content=output, filtered=("AND" in query.text))
+    return render_template("show.html", curlink="my_notes",
+                           own=True, content=output, filtered=("AND" in query.text), username=current_user.username)
 
 @notes_bp.route("/notes", methods=["GET", "POST"])
 def browse_notes_redirect():
@@ -72,12 +69,26 @@ def browse_notes_redirect():
 
 @notes_bp.route("/notes/browse_notes", methods=["GET", "POST"])
 def browse_notes():
-    query = notes_sql(request.args.copy(), True, False)
+    args = request.args.copy()  # public static void main(String[] args)
+    if 'delete' in args:
+        if not current_user.is_authenticated:
+            abort(403)
+        owner_id = run(text(f"SELECT owner_id FROM note WHERE id = {args['delete']}")).fetchall()
+        if len(owner_id) != 0:
+            owner_id = owner_id[0][0]
+            if owner_id != current_user.id:
+                abort(403)
+            connection = db.get_engine().connect()
+            connection.execute(text(f"DELETE FROM note WHERE id = {args['delete']}"))
+            connection.commit()
+            return redirect("/notes/browse_notes")
+    query = notes_sql(args, True, False)
     output = [list(i)+
         [run(text(f"SELECT username FROM user WHERE id = {i[1]}")).fetchall()[0][0]]
         for i in db.get_engine().connect().execute(query).fetchall()]  # below: "own" field nonfunctional
+    print(output)
     return render_template("show.html",
-                           curlink="browse_notes", own=True, content=sample(output, len(output)),
+                           curlink="browse_notes", own=False, content=sample(output, len(output)),
                            filtered=("AND" in query.text))
 
 @notes_bp.route("/notes/render_note/<path:note_id>", methods=["GET", "POST"])
