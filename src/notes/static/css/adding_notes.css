@@ -1,0 +1,85 @@
+body {
+    background-color: #21252F;
+    font-family: "Lato", Helvetica;
+    color: #ffffff;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.tytuł {
+    display: flex;
+    justify-content: center;
+}
+
+.przerwa {
+    height: 10px;
+}
+
+.przedmiot {
+    position: absolute;
+    color: #21252F;
+    border-radius: 30px;
+    font-size: 17px;
+    border: none;
+    left: 140px;
+    width: 200px;    
+}
+
+.klasa {
+    position: absolute;
+    color: #21252F;
+    border-radius: 30px;
+    font-size: 17px;
+    border: none;
+    left: 140px;
+    width: 200px;
+}
+
+.temat {
+    position: absolute;
+    color: #21252F;
+    border-radius: 30px;
+    font-size: 17px;
+    border: none;
+    left: 140px;
+    width: 200px;
+}
+
+.otoczenie {
+    background-color: #505FAF;
+    display: inline-block;
+    padding: 20px;
+    padding-bottom: 70px;
+    border-radius: 30px;
+    width: 80%;
+    height: 80%;
+}
+
+.otoczenie_otoczenia {
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    border-radius: 30px;
+    position:relative;
+    background: #3F4A89;
+}
+
+input[type="submit" i] {
+    position: absolute;
+    background-color: #3F4A89;
+    border-radius: 15px;
+    padding: 10px 30px;
+    height: 50px;
+    left: 140px;
+    bottom: 35px;
+    border: none;
+    font-family: "Lato", Helvetica;
+    color: #ffffff;
+}

@@ -3,69 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .przerwa {
-            padding: 5px;
-        }
-        p{
-            margin: 2px;
-            color: red;
-        }
-    </style>
+    <title>Dodaj notkę</title>
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/adding_notes.css')}}">
 </head>
 <body>
-<form action="" method="post">
+<p class="tytuł"> Stwórz notkę! </p>
+<div class="form">
+    <form action="" method="post">
+        <div class="otoczenie_otoczenia">
+            <div class="otoczenie">
+                {{form.subject.label}}
+                {{ form.subject(class="przedmiot") }}
+                {%for i in form.subject.errors %}
+                <p>{{i}}</p>
+                {%endfor%}
 
-    {{form.subject.label}}
-    {{ form.subject() }}
+                <div class="przerwa"></div>
 
-    {%for i in form.subject.errors %}
-    <p>{{i}}</p>
-    {%endfor%}
+                {{form.grade.label}}
+                {{ form.grade(class="klasa") }}
+                {%for i in form.grade.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
-    <div class="przerwa"></div>
+                <div class="przerwa"></div>
 
+                {{form.school_type.label}}
+                {{ form.school_type(class="rodzaj_szkoły") }}
+                {%for i in form.school_type.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
-    {{form.grade.label}}
-    {{ form.grade() }}
-    {%for i in form.grade.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
+                <div class="przerwa"></div>
 
-    <div class="przerwa"></div>
+                {{form.privacy.label}}
+                {{ form.privacy(class="rodzaj_szkoły") }}
+                {%for i in form.privacy.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
+                <div class="przerwa"></div>
 
-    {{form.school_type.label}}
-    {{ form.school_type() }}
-    {%for i in form.school_type.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
+                <!-- TO BE REPLACED with a markdown editor of some sort -->
+                {{form.chapter.label}}
+                {{ form.chapter(class="temat") }}
+                {%for i in form.chapter.errors%}
+                <p>{{i}}</p>
+                {%endfor%}
 
-    <div class="przerwa"></div>
+                <div class="przerwa2"></div>
 
-    {{form.privacy.label}}
-    {{ form.privacy() }}
-    {%for i in form.privacy.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
-
-
-    <div class="przerwa"></div>
-
-    <!-- TO BE REPLACED with a markdown editor of some sort -->
-    {{form.chapter.label}}
-    {{ form.chapter() }}
-    {%for i in form.chapter.errors%}
-    <p>{{i}}</p>
-    {%endfor%}
-
-
-    <div class="przerwa"></div>
-
-    <p>CONTENT EDITING TEMPORARILY REMOVED</p>
-
-    <input type="submit" value="wyślij">
-</form>
+                <input type="submit" value="wyślij">
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

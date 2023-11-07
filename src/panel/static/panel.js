@@ -7,6 +7,11 @@ function get_options(data){ // less pointless repeatery
       },
     };
 }
+function timeout(time){
+    setTimeout(function() {
+        location.reload();
+    }, time);
+}
 function scr1(){
     let userInput = prompt("New email");
     if (userInput !== null) {
@@ -17,26 +22,20 @@ function scr1(){
     } else {
       alert("You did not enter anything.");
     }
-    setTimeout(function() {
-        location.reload();
-    }, 1100);
+    timeout(1138);
 }
 function scr2(account_type){
     const url = '/change_type';
     const data = new URLSearchParams();
     data.append('curtype', account_type);
     fetch(url, get_options(data));
-    setTimeout(function() {
-        location.reload();
-    }, 700);
+    timeout(713);
 }
 function scr3(){
     const url = '/generate_pfp';
     const data = new URLSearchParams();
     fetch(url, get_options(data));
-    setTimeout(function() {
-        location.reload();
-    }, 1300);
+    timeout(1337)
 }
 function scr4(){
     alert("This is your profile picture, randomly generated using hashing algorithms and complicated math.\n"+

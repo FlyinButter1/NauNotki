@@ -1,8 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, EmailField, PasswordField, RadioField
-from wtforms.validators import DataRequired, Email, EqualTo, InputRequired, ValidationError
-from src.models import User
-from flask import url_for
+from wtforms import StringField, RadioField
+from wtforms.validators import DataRequired
 from wtforms import ValidationError
 import re
 
@@ -30,15 +28,15 @@ class Edit(FlaskForm):
 
 class Add(FlaskForm):
     subject = StringField(
-        "Subject",
+        "Przedmiot",
         validators=[DataRequired(), censorship_validator]
     )
     grade = StringField(
-        "Grade",
+        "Klasa",
         validators=[DataRequired(), grade_validator]
     )
     school_type = RadioField(
-        "School type",
+        "Rodzaj szkoły",
         validators=[DataRequired()],
         choices=[
             ("przedszkole", "Przedszkole"),
@@ -51,11 +49,7 @@ class Add(FlaskForm):
         ]
     )
     chapter = StringField(
-        "Chapter",
-        validators=[DataRequired(), censorship_validator]
-    )
-    _content = StringField(  # temporarily removed
-        "Content",
+        "Temat",
         validators=[DataRequired(), censorship_validator]
     )
     privacy = RadioField(
@@ -66,3 +60,4 @@ class Add(FlaskForm):
             ('0', 'public')
         ]
     )
+

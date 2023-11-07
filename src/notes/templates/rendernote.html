@@ -3,25 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/rendernote.css')}}">
 </head>
 <body>
-    <p style="text-align: center">
-        Notatka autorstwa <a href="/notes/browse_notes?teacher={{ author }}">{{ author }}</a>:
-        Dział: {{ note[5] }} dla kl. {{ note[3] }} (szkoła: {{ note[4] }})
-    </p><br>
+    <div class="naglowek">
+        <div class="element">
+            Notatka autorstwa: <a href="/notes/browse_notes?teacher={{ author }}"> {{ author }}</a>
+        </div>
+        <div class="element">
+            Dział: {{ note[5] }}
+        </div> 
+        <div class="element">
+            klasa: {{ note[3] }}
+        </div>
+        <div class="element">
+            szkoła: {{ note[4] }}
+        </div>
+    </div>
     {% if note[6] != "" %}
-        <p style="text-align: center">
+    <div class="tekst">
+        <p class="content">
             {{ note[6] }}
-        </p><br>
+        </p><br><br>
+    </div>
         <a href="/notes/edit_note/{{ note[0] }}">
-            Zmień zawartość notatki.
+            <button class="zmien_button">
+                Zmień zawartość notatki
+            </button>
         </a><br>
     {% else %}
         <a href="/notes/edit_note/{{ note[0] }}">
-            Dodaj zawartość do notatki.
+            <button class="zmien_button">
+                Dodaj zawartość do notatki
+            </button>
         </a><br>
     {% endif %}
-    <a href="/flashcards?note={{note_id}}">Fiszki</a>
+    <br>
+    <a href="/flashcards?note={{note_id}}">
+        <button class="fiszki_button">
+            Fiszki
+        </button>
+    </a>
     
 </body>
 </html>

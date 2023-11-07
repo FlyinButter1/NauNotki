@@ -5,7 +5,6 @@ from werkzeug.datastructures import MultiDict
 from random import sample
 
 from src import db
-from src.main import main
 from .forms import Add, Edit
 from src.models import Notes
 
@@ -66,6 +65,10 @@ def my_notes():
     output = list(run(query).fetchall())  # below: "own" field nonfunctional
     return render_template("show.html", curlink="my_notes", own=True, content=output, filtered=("AND" in query.text))
 
+@notes_bp.route("/notes", methods=["GET", "POST"])
+def browse_notes_redirect():
+    return redirect(url_for("notes.browse_notes"))
+
 @notes_bp.route("/notes/browse_notes", methods=["GET", "POST"])
 def browse_notes():
     query = notes_sql(request.args.copy(), True, False)
@@ -82,13 +85,15 @@ def render_single_note(note_id):
         user_id = current_user.id
     query1 = f"SELECT * FROM note WHERE id = {note_id} " \
             f"{f'AND (owner_id = {user_id} OR private IS NULL OR private = 0)' if user_id != '' else ''}"
-    results = run(text(query1)).fetchall()[0]
-    query2 = f"SELECT username FROM user WHERE id = {results[1]}"
+    results = run(text(query1)).fetchall()
+    if len(results) != 1:
+        abort(404)
+    query2 = f"SELECT username FROM user WHERE id = {results[0][1]}"
     author = run(text(query2)).fetchall()[0][0]
     print(results)
     if len(results) == 0:
         return redirect("/notes/browse_notes")
-    return render_template("rendernote.html", note=results, author=author, note_id = note_id)
+    return render_template("rendernote.html", note=results[0], author=author, note_id = note_id)
 @notes_bp.route("/notes/edit_note/<path:note_id>", methods=["GET", "POST"])
 def edit_single_note(note_id):
     form = Edit()
