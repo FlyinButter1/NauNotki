@@ -32,7 +32,7 @@
         {{ form.oldpassword() }}
         {%for i in form.oldpassword.errors%}
         <p>{{i}}</p>
-        {%endfor%}
+        {%endfor%}<br>
 
         {{form.newpassword.label}}
         {{ form.newpassword() }}
