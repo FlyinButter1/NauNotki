@@ -65,8 +65,8 @@ class Add(FlaskForm):
         "Prywatność",
         validators=[DataRequired()],
         choices=[
-            ('1', 'private'),
-            ('0', 'public')
+            ('1', 'prywatna'),
+            ('0', 'publiczna')
         ]
     )
 
