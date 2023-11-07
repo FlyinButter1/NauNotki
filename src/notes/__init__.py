@@ -5,10 +5,11 @@ from werkzeug.datastructures import MultiDict
 from random import sample
 
 from src import db
-from .forms import Add, Edit
+from .forms import Add
 from src.models import Notes
 
-notes_bp = Blueprint('notes', __name__, template_folder='templates', static_folder="static", static_url_path='/notes-static')
+notes_bp = Blueprint(
+    'notes', __name__, template_folder='templates', static_folder="static", static_url_path='/notes-static')
 
 run = lambda x: db.get_engine().connect().execute(x)
 
@@ -75,8 +76,9 @@ def browse_notes():
     output = [list(i)+
         [run(text(f"SELECT username FROM user WHERE id = {i[1]}")).fetchall()[0][0]]
         for i in db.get_engine().connect().execute(query).fetchall()]  # below: "own" field nonfunctional
-    return render_template(
-        "show.html", curlink="browse_notes", own=True, content=sample(output, len(output)), filtered=("AND" in query.text))
+    return render_template("show.html",
+                           curlink="browse_notes", own=True, content=sample(output, len(output)),
+                           filtered=("AND" in query.text))
 
 @notes_bp.route("/notes/render_note/<path:note_id>", methods=["GET", "POST"])
 def render_single_note(note_id):
@@ -84,7 +86,7 @@ def render_single_note(note_id):
     if current_user.is_authenticated:
         user_id = current_user.id
     query1 = f"SELECT * FROM note WHERE id = {note_id} " \
-            f"{f'AND (owner_id = {user_id} OR private IS NULL OR private = 0)' if user_id != '' else ''}"
+             f"{f'AND (owner_id = {user_id} OR private IS NULL OR private = 0)' if user_id != '' else ''}"
     results = run(text(query1)).fetchall()
     if len(results) != 1:
         abort(404)
@@ -96,7 +98,11 @@ def render_single_note(note_id):
     return render_template("rendernote.html", note=results[0], author=author, note_id = note_id)
 @notes_bp.route("/notes/edit_note/<path:note_id>", methods=["GET", "POST"])
 def edit_single_note(note_id):
-    form = Edit()
+    return render_template("edit.html", id=note_id)
+
+@notes_bp.route("/notes/run_edit/<path:note_id>", methods=["POST"])
+def run_edit_note(note_id):
+    data = request.form.get('content')
     check_if_exists = run(text(f"SELECT * FROM note WHERE id = {note_id}")).fetchall()
     if len(check_if_exists) != 1:
         abort(404)
@@ -106,9 +112,6 @@ def edit_single_note(note_id):
         userid = check_if_exists[0][0]
         if userid != int(note_id):
             abort(403)
-    if form.validate_on_submit():
-        connection = db.get_engine().connect()
-        connection.execute(text(f"UPDATE note SET content = \'{form.content.data}\' WHERE id = {note_id}"))
-        connection.commit()
-        return redirect(f"/notes/render_note/{note_id}")
-    return render_template("edit.html", form=form)
+    connection = db.get_engine().connect()
+    connection.execute(text(f"UPDATE note SET content = \'{data}\' WHERE id = {note_id}"))
+    connection.commit()
