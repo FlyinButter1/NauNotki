@@ -116,3 +116,6 @@ svg{
     left:78%;
     top:25%;
 }
+.remove-decorations{
+    text-decoration: none;
+}

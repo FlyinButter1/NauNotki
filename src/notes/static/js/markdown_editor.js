@@ -7,10 +7,9 @@ function updatePreview(){
 function testfunc(id){
     let userInput = document.getElementById('markdown-input').value;
     if (userInput !== null) {
-        const url = '/notes/run_edit/'+id;
         const data = new URLSearchParams();
         data.append('content', userInput);
-        fetch(url, {
+        fetch('/notes/run_edit/'+id, {
             method: 'POST',
             body: data,
             headers: {

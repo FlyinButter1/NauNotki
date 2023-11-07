@@ -15,26 +15,23 @@ function timeout(time){
 function scr1(){
     let userInput = prompt("New email");
     if (userInput !== null) {
-        const url = '/change_email';
         const data = new URLSearchParams();
         data.append('email', userInput);
-        fetch(url, get_options(data));
+        fetch('/change_email', get_options(data));
     } else {
       alert("You did not enter anything.");
     }
     timeout(1138);
 }
 function scr2(account_type){
-    const url = '/change_type';
     const data = new URLSearchParams();
     data.append('curtype', account_type);
-    fetch(url, get_options(data));
+    fetch('/change_type', get_options(data));
     timeout(713);
 }
 function scr3(){
-    const url = '/generate_pfp';
     const data = new URLSearchParams();
-    fetch(url, get_options(data));
+    fetch('/generate_pfp', get_options(data));
     timeout(1337)
 }
 function scr4(){
