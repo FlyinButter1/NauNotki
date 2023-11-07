@@ -33,14 +33,14 @@
         {%for i in form.oldpassword.errors%}
         <p>{{i}}</p>
         {%endfor%}
-
+        <br>
 
         {{form.newpassword.label}}
         {{ form.newpassword() }}
         {%for i in form.newpassword.errors%}
         <p>{{i}}</p>
         {%endfor%}
-
+        <br>
 
         {{form.confirm.label}}
         {{ form.confirm() }}
@@ -61,7 +61,7 @@
     <div>
         <div class="tekst">   <!--Moja szczera reakcja na to że mamy dwa różne typy form w jednym pliku-->
             <div>Email: {{ email }}</div>  <div><button onclick="scr1()">Zmień email</button></div>
-            <div>Account type: {{ account_type }} </div><div><button onclick="scr2('{{ account_type }}')">Zmień rolę</button></div>
+            <div>Rola: {{ account_type }} </div><div><button onclick="scr2('{{ account_type }}')">Zmień rolę</button></div>
         </div>
         <div>
             {% if pfp_exists %}

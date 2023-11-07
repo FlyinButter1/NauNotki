@@ -6,6 +6,8 @@ body {
     background: #21252F;
     font-family: 'Lato', sans-serif;
     color: #C5B5DE;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 .gorne {
     top:0;
