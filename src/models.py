@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     def __init__(self, email, username, password, role):
         self.email = email
         self.username = username
-        self.password = bcrypt.generate_password_hash(password, 12)
+        self.password = bcrypt.generate_password_hash(password, 12).decode('utf8')
         self.role = role
         
     def __repr__(self):
