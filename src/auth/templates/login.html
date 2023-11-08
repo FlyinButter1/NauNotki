@@ -42,6 +42,8 @@
                 <p>{{i}}</p>
                 {%endfor%}
 
+                {{ form.csrf_token }}
+
                 <input type="submit" value="Zaloguj" class="zaloguj">
 
                 {% with messages = get_flashed_messages() %}
@@ -51,6 +53,8 @@
                     {% endfor %}
                 {% endif %}
                 {% endwith %}
+
+                
             </form>
         </div>
         </div>
