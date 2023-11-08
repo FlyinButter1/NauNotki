@@ -71,7 +71,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username = form.username.data).first()
         if user is not None:
-            if bcrypt.check_password_hash(user.password.decode('utf8'), form.password.data):
+            if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return redirect(url_for("notes.my_notes"))
         flash("Nieporawny login i/lub hasło")
