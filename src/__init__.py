@@ -44,5 +44,7 @@ app.register_blueprint(panel_bp)
 app.register_blueprint(flashcards_bp)
 app.register_blueprint(test_bp)
 
+from src.models import User, Flashcards, Notes
+
 with app.app_context():
     db.create_all()
