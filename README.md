@@ -1,16 +1,4 @@
 # NauNotki
-env variables to set for testing 
+https://naunotki.pl/
 
-SECRET_KEY
-
-APP_SETTINGS=config.TestingConfig
-
-DATABASE_URI=sqlite:///database.db
-
-PYTHONDONTWRITEBYTECODE=1
-
-FLASK_APP=src
-
-FLASK_DEBUG=1
-
-OPENAI_API_KEY
+https://www.figma.com/file/jz5YpulabIudymXATZVPyf/naunotki.pl?type=design&node-id=0-1&mode=design
