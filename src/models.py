@@ -33,7 +33,7 @@ class Notes(db.Model):
     subject = db.Column(db.Text)
     grade = db.Column(db.Integer)
     school_type = db.Column(db.Text)
-    chapter = db.Column(db.Integer)
+    chapter = db.Column(db.Text)
     content = db.Column(db.Text, nullable = False)
     private = db.Column(db.Integer)
     has_flashcards = db.Column(db.Boolean, default=False)
