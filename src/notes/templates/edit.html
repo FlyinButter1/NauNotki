@@ -7,12 +7,12 @@
     <script src="{{url_for('.static', filename='js/markdown_editor.js')}}"></script>
     <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body onload="main()">
     <div class="markdown-editor">
         <div class="markdown-input">
-            <form>
-                <textarea id="markdown-input" placeholder="Tu wpisz swoją notatkę"></textarea>
-                <button onclick="testfunc({{ id }})">Zmień</button>
+            <form method="post" action="/notes/run_edit/{{id}}">
+                <textarea id="markdown-input" placeholder="Tu wpisz swoją notatkę" name="content"></textarea>
+                <input type="submit" value="Zmień">
             </form>
         </div>
         <div class="markdown-preview">

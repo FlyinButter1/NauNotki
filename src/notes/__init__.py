@@ -130,8 +130,6 @@ def run_edit_note(note_id):
     query1 = f"SELECT * FROM note WHERE id = {note_id} " \
              f"{f'AND (owner_id = {current_user.id} OR private IS NULL OR private = 0)' if current_user.id != '' else ''}"
     check_if_exists = run(text(query1)).fetchall()
-    if not censorship_validator_string(data):
-        abort(418)  # temporary
     if len(check_if_exists) != 1:
         abort(404)
     else:
@@ -143,4 +141,4 @@ def run_edit_note(note_id):
     connection = db.get_engine().connect()
     connection.execute(text(f"UPDATE note SET content = \'{data}\' WHERE id = {note_id}"))
     connection.commit()
-    return make_response('', 201)
+    return redirect(url_for("notes.my_notes"))
