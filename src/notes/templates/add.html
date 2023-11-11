@@ -51,6 +51,8 @@
                 {%for i in form.chapter.errors%}
                 <p>{{i}}</p>
                 {%endfor%}
+                
+                {{ form.csrf_token }}
 
                 <div class="przerwa2"></div>
 

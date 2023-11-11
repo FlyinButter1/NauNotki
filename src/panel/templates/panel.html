@@ -49,6 +49,8 @@
         {%endfor%}
         <input class="zmiana" type="submit" value="Zmień">
 
+        {{ form.csrf_token }}
+
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
